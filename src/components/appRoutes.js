@@ -3,6 +3,7 @@ import SignIn from './Auth/signIn';
 import SignUp from './Auth/signUp';
 import Logout from './Auth/logout';
 import Home from '../pages/home';
+import RequestResetForm from './PasswordReset/requestResetForm';
 
 
 const AppRoutes = () => {
@@ -14,6 +15,7 @@ const AppRoutes = () => {
                     <Route path="/login" element={<SignIn />} />
                     <Route path="/register" element={<SignUp />} />
                     <Route path="/logout" element={<Logout />} />
+                    <Route path="/request-pass" element={<RequestResetForm />} />
                 </Routes>
             </div>
         </Router>
