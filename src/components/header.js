@@ -33,7 +33,7 @@ const Header = () => {
       <nav>
         <ul style={navStyle}>
           <li><a href="/" style={linkStyle}>Accueil</a></li>
-          <li><a href="/about" style={linkStyle}>À Propos</a></li>
+          <li><a href="/offer-form" style={linkStyle}>Nouvelle offre</a></li>
           <li><a href="/contact" style={linkStyle}>Contact</a></li>
         </ul>
       </nav>

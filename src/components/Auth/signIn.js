@@ -34,7 +34,7 @@ const SignIn = () => {
       if (response.status === 200) {
         // Handle successful login
         alert('Connexion réussie !');
-        navigate('/'); // Redirige vers la page d'accueil
+        navigate('/private'); // Redirige vers la page d'accueil
       } else {
         throw new Error('Erreur lors de la connexion');
       }

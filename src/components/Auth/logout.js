@@ -23,7 +23,7 @@ const Logout = () => {
     } catch (err) {
       console.log(err);
 
-      window.location = "/login";
+      window.location = "/";
     }
   };
 
