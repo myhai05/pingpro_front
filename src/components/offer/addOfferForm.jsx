@@ -14,7 +14,7 @@ const AddOfferForm = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}api/add-offer`,
+        `${process.env.REACT_APP_API_URL}api/offers/add-offer`,
         { title, description, price },
         {
             withCredentials: true // Cela permet d'inclure les cookies dans la requête

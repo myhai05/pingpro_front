@@ -8,6 +8,7 @@ import RequestResetForm from './PasswordReset/requestResetForm';
 import Private from './private';
 import ResetPasswordForm from './PasswordReset/resetPasswordForm';
 import AddOfferForm from './offer/addOfferForm';
+import OfferFetcher from './offer/offerFetchers';
 
 
 const AppRoutes = () => {
@@ -15,7 +16,7 @@ const AppRoutes = () => {
       <Router>
         <div>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<OfferFetcher><Home /></OfferFetcher>} />
             <Route path="/private" element={<Private />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />
