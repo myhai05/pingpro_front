@@ -9,25 +9,30 @@ import Private from './private';
 import ResetPasswordForm from './PasswordReset/resetPasswordForm';
 import AddOfferForm from './offer/addOfferForm';
 import OfferFetcher from './offer/offerFetchers';
+import Header from './header.js';
+import { AuthProvider } from '../components/Context/authContext.js';
 
 
 const AppRoutes = () => {
-    return (
+  return (
+    <AuthProvider>
       <Router>
         <div>
+          <Header />  {/* Le Header est maintenant toujours affiché */}
           <Routes>
             <Route path="/" element={<OfferFetcher><Home /></OfferFetcher>} />
             <Route path="/private" element={<Private />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />
-            <Route path="/logout" element={<Logout />} />
+          
             <Route path="/request-pass" element={<RequestResetForm />} /> 
             <Route path='/reset-form/:token' element={<ResetPasswordForm />} />  
             <Route path='/offer-form' element={<AddOfferForm />} />  
           </Routes>
         </div>
       </Router>
-    );
-  };
+    </AuthProvider>
+  );
+};
 
 export default AppRoutes;

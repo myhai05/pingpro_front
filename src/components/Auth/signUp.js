@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import './signUp.css'; // Import the CSS file
 
 const signUpSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -50,7 +51,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Inscription</h1>
       <Formik
         initialValues={{
@@ -65,30 +66,30 @@ const SignUp = () => {
       >
         {formikProps => (
           <Form>
-            <div>
+            <div className="form-group">
               <label htmlFor="firstName">Prénom</label>
-              <Field type="text" name="firstName" />
-              <ErrorMessage name="firstName" component="div" />
+              <Field type="text" name="firstName" className="input" />
+              <ErrorMessage name="firstName" component="div" className="error-message" />
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="lastName">Nom</label>
-              <Field type="text" name="lastName" />
-              <ErrorMessage name="lastName" component="div" />
+              <Field type="text" name="lastName" className="input" />
+              <ErrorMessage name="lastName" component="div" className="error-message" />
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="email">Email</label>
-              <Field type="email" name="email" />
-              <ErrorMessage name="email" component="div" />
+              <Field type="email" name="email" className="input" />
+              <ErrorMessage name="email" component="div" className="error-message" />
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="password">Mot de passe</label>
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" component="div" />
+              <Field type="password" name="password" className="input" />
+              <ErrorMessage name="password" component="div" className="error-message" />
             </div>
-            <div>
-              <Field type="checkbox" name="accepteCGU" />
+            <div className="form-group">
+              <Field type="checkbox" name="accepteCGU" className="checkbox" />
               <label htmlFor="accepteCGU">J'accepte les CGU</label>
-              <ErrorMessage name="accepteCGU" component="div" />
+              <ErrorMessage name="accepteCGU" component="div" className="error-message" />
             </div>
             <button type="submit" disabled={formikProps.isSubmitting}>
               S'inscrire

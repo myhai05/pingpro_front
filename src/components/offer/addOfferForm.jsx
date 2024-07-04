@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './addOfferForm.css'; // Import the CSS file
 
 const AddOfferForm = () => {
   const [title, setTitle] = useState('');
@@ -9,16 +10,13 @@ const AddOfferForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    //const token = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
-    //const tokenValue = token ? token.split('=')[1] : '';
-
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}api/offers/add-offer`,
         { title, description, price },
         {
-            withCredentials: true // Cela permet d'inclure les cookies dans la requête
-          }
+            withCredentials: true // Include cookies in the request
+        }
       );
 
       if (response.status === 200) {

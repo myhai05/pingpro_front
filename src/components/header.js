@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './Context/authContext';
 import Logout from './Auth/logout';
 
 const headerStyle = {
@@ -28,19 +29,31 @@ const logoutContainerStyle = {
 };
 
 const Header = () => {
+  const { user } = useContext(AuthContext);  // Utiliser le contexte pour obtenir l'utilisateur
+
   return (
     <header style={headerStyle}>
-      <h1>Mon Application</h1>
+      <Link to={user ? "/private" : "/"} style={{ ...linkStyle, fontSize: '24px', fontWeight: 'bold' }}>
+        PingPro
+      </Link>
       <nav>
         <ul style={navStyle}>
-          <li><Link to="/" style={linkStyle}>Accueil</Link></li>
-          <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
-          <li><Link to="/contact" style={linkStyle}>Contact</Link></li>
+          {user ? (
+            <>
+              <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
+              <li><Link to="/private" style={linkStyle}>Espace privé</Link></li>
+              <div style={logoutContainerStyle}>
+                <Logout />
+              </div>
+            </>
+          ) : (
+            <>
+              <li><Link to="/login" style={linkStyle}>Se connecter</Link></li>
+              <li><Link to="/register" style={linkStyle}>S'inscrire</Link></li>
+            </>
+          )}
         </ul>
       </nav>
-      <div style={logoutContainerStyle}>
-        <Logout />
-      </div>
     </header>
   );
 };

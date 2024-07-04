@@ -6,18 +6,6 @@ import './home.css';
 const Home = ({ offers }) => {
   return (
     <div>
-      <h1>PINGPRO</h1>
-      {/* Liens vers les pages */}
-      <div>
-        <Link to="/login">Se connecter</Link>
-      </div>
-      <div>
-        <Link to="/register">S'inscrire</Link>
-      </div>
-      <div>
-        <Link to="/request-pass">Mot de passe oublié</Link>
-      </div>
-      
       {/* Affichage des offres */}
       <h2>Offres disponibles :</h2>
       <div className="offer-list">

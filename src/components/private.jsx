@@ -3,7 +3,10 @@ import Header from './header';
 
 const Private = () => {
     return (
-        <Header />
+        <div>
+           <p>Bonjour</p>
+        </div>
+        
     );
 };
 
