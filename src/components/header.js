@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Logout from './Auth/logout';
 
 const headerStyle = {
@@ -32,9 +33,9 @@ const Header = () => {
       <h1>Mon Application</h1>
       <nav>
         <ul style={navStyle}>
-          <li><a href="/" style={linkStyle}>Accueil</a></li>
-          <li><a href="/offer-form" style={linkStyle}>Nouvelle offre</a></li>
-          <li><a href="/contact" style={linkStyle}>Contact</a></li>
+          <li><Link to="/" style={linkStyle}>Accueil</Link></li>
+          <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
+          <li><Link to="/contact" style={linkStyle}>Contact</Link></li>
         </ul>
       </nav>
       <div style={logoutContainerStyle}>
