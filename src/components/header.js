@@ -40,8 +40,11 @@ const Header = () => {
         <ul style={navStyle}>
           {user ? (
             <>
-              <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
+              {user.role === 'admin' && (
+                <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
+              )}
               <li><Link to="/private" style={linkStyle}>Espace privé</Link></li>
+              <li><Link to="/upload-form" style={linkStyle}>Poster</Link></li>
               <div style={logoutContainerStyle}>
                 <Logout />
               </div>
