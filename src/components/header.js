@@ -44,7 +44,7 @@ const Header = () => {
                 <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
               )}
               <li><Link to="/private" style={linkStyle}>Espace privé</Link></li>
-              <li><Link to="/upload-form" style={linkStyle}>Poster</Link></li>
+              <li><Link to="/upload-form" style={linkStyle}>Transmettre une vidéo</Link></li>
               <div style={logoutContainerStyle}>
                 <Logout />
               </div>

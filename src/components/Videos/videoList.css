@@ -25,5 +25,36 @@
     padding: 5px;
     font-size: 12px; /* Taille réduite du champ de commentaire */
   }
+
+  .posts-list {
+    padding: 20px;
+  }
+  
+  .post-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px));
+    gap: 20px;
+  }
+  
+  .post-card {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+  }
+   
+  .post-card:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .post-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .post-card p {
+    font-size: 14px;
+    color: #666;
+  }
   
   
