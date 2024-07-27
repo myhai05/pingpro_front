@@ -19,7 +19,7 @@ const ConnexionSchema = Yup.object().shape({
 const SignIn = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
-
+      
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await axios.post(
@@ -34,9 +34,10 @@ const SignIn = () => {
       );
       
       if (response.status === 200) {
+        console.log(response);
         setUser(response.data.responseData);
         alert('Connexion réussie !');
-        navigate('/private');
+        navigate('/offers');
       } else {
         throw new Error('Erreur lors de la connexion');
       }

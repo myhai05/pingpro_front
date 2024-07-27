@@ -57,16 +57,16 @@ const VideoUploadForm = () => {
             <h2>Upload Video</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Title:</label>
-                    <input type="text" value={title} onChange={handleTitleChange} required />
+                    <label htmlFor="title">Title:</label>
+                    <input id="title" type="text" value={title} onChange={handleTitleChange} required />
                 </div>
                 <div>
-                    <label>Description:</label>
-                    <textarea value={description} onChange={handleDescriptionChange} required />
+                    <label htmlFor="description">Description:</label>
+                    <textarea id="description" value={description} onChange={handleDescriptionChange} required />
                 </div>
                 <div>
-                    <label>Video:</label>
-                    <input type="file" accept="video/*" onChange={handleVideoChange} required />
+                    <label htmlFor="video">Video:</label>
+                    <input id="video" type="file" accept="video/*" onChange={handleVideoChange} required />
                 </div>
                 <button type="submit">Upload</button>
             </form>

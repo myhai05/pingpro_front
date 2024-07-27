@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from './Context/authContext';
 import Logout from './Auth/logout';
+import Payment from './Payment/stripePromise';
+import OfferFetcher from './offer/offerFetchers';
 
 const headerStyle = {
   display: 'flex',
@@ -30,6 +32,15 @@ const logoutContainerStyle = {
 
 const Header = () => {
   const { user } = useContext(AuthContext);  // Utiliser le contexte pour obtenir l'utilisateur
+  const [isPaid, setIsPaid] = useState(false);
+
+  console.log(user);
+ 
+  const handlePaymentSuccess = () => {
+    setIsPaid(true);
+  };
+
+  
 
   return (
     <header style={headerStyle}>
@@ -44,7 +55,8 @@ const Header = () => {
                 <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
               )}
               <li><Link to="/private" style={linkStyle}>Espace privé</Link></li>
-              <li><Link to="/upload-form" style={linkStyle}>Transmettre une vidéo</Link></li>
+                <li><Link to="/upload-form" style={linkStyle}>Transmettre une vidéo</Link></li>
+               
               <div style={logoutContainerStyle}>
                 <Logout />
               </div>

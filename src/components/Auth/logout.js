@@ -1,13 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import cookie from "js-cookie";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/authContext';
+import Cookies from 'js-cookie';
+
+
+
 
 const Logout = () => {
 
+  const { setUser } = useContext(AuthContext);
+
   const removeCookie = (key) => {
-    if (typeof window !== "undefined") {
-      cookie.remove(key, { expires: 1 });
+    if (window !== "undefined") {
+      Cookies.remove(key, { expires: 1 });
     }
   };
 
@@ -15,11 +22,12 @@ const Logout = () => {
     try {
       await axios({
         method: "get",   
-        url: `${process.env.REACT_APP_API_URL}/api/logout`,
+        url: `${process.env.REACT_APP_API_URL}api/logout`,
         withCredentials: true,
       });
-      
+     
       removeCookie("jwt");
+      setUser(null);
     } catch (err) {
       console.log(err);
 

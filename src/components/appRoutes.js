@@ -9,40 +9,35 @@ import Private from './private';
 import ResetPasswordForm from './PasswordReset/resetPasswordForm';
 import AddOfferForm from './offer/addOfferForm';
 import OfferFetcher from './offer/offerFetchers';
-import Header from './header.js';
-import { AuthProvider } from '../components/Context/authContext.js';
+import Header from './header.jsx';
 import PrivateRoute from './Context/privateRoutes.js';
 import VideoUploadForm from './Videos/videoUploadForm.jsx';
+import PaymentSuccess from './Payment/paymentSuccess.js';
+import PaymentCancel from './Payment/payementCancel.js';
+import Payment from './Payment/stripePromise.js';
+import Footer from './footer.jsx';
 
 
 const AppRoutes = () => {
+
+  
   return (
-    <AuthProvider>
       <Router>
         <div>
-          <Header />  {/* Le Header est maintenant toujours affiché */}
+          <Header />
           <Routes>
             <Route path="/" element={<OfferFetcher><Home /></OfferFetcher>} />
-            <Route path="/private" element={
-              <PrivateRoute>
-                <Private />
-              </PrivateRoute>
-            } />
+            <Route path="/private" element={ <Private />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/request-pass" element={<RequestResetForm />} /> 
+            <Route path='/reset-form/:token' element={<ResetPasswordForm />} />
           
             <Route path="/logout" element={
               <PrivateRoute>
                 <Logout />
               </PrivateRoute>
-            } />
-
-            <Route path='/reset-form/:token' element={
-              <PrivateRoute>
-                <ResetPasswordForm />
-              </PrivateRoute>
-            } />  
+            } />            
             <Route path='/offer-form' element={
               <PrivateRoute>
                 <AddOfferForm />
@@ -53,11 +48,14 @@ const AppRoutes = () => {
                 <VideoUploadForm />
               </PrivateRoute>
             } />
+            <Route path="/success" element={<PaymentSuccess />} />  {/* Ajoutez cette ligne */}
+            <Route path="/cancel" element={<PaymentCancel />} />  {/* Ajoutez cette ligne */}
+            <Route path="/offers" element={<OfferFetcher><Payment /></OfferFetcher>} />
             <Route path="*" element={<Navigate to="/login" />} />  {/* Redirection des routes non définies */}  
           </Routes>
+          <Footer />
         </div>
       </Router>
-    </AuthProvider>
   );
 };
 

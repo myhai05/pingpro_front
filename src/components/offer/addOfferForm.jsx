@@ -6,6 +6,7 @@ const AddOfferForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [validityMonths, setValidityMonths] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,9 +14,9 @@ const AddOfferForm = () => {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}api/offers/add-offer`,
-        { title, description, price },
+        { title, description, price, validityMonths },
         {
-            withCredentials: true // Include cookies in the request
+          withCredentials: true // Include cookies in the request
         }
       );
 
@@ -24,6 +25,7 @@ const AddOfferForm = () => {
         setTitle('');
         setDescription('');
         setPrice('');
+        setValidityMonths('');
       } else {
         alert('Erreur lors de l\'ajout de l\'offre');
       }
@@ -70,6 +72,17 @@ const AddOfferForm = () => {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="validityMonths">Durée de validité (en mois)</label>
+          <input
+            type="number"
+            id="validityMonths"
+            name="validityMonths"
+            value={validityMonths}
+            onChange={(e) => setValidityMonths(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
           <button type="submit">Ajouter l'Offre</button>
         </div>
       </form>
@@ -78,3 +91,4 @@ const AddOfferForm = () => {
 };
 
 export default AddOfferForm;
+

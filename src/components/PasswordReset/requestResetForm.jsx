@@ -19,7 +19,7 @@ const RequestResetForm = () => {
     <div>
       <h2>Request Password Reset</h2>
       <form onSubmit={handleSubmit}>
-        <label>Email:</label>
+        <label htmlFor="email">Email:</label>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <button type="submit">Reset Password</button>
       </form>

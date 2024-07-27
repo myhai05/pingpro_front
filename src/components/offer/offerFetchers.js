@@ -13,6 +13,7 @@ const OfferFetcher = ({ children }) => {
           withCredentials: true, // Pour inclure les cookies dans la requête
         });
         if (response.status === 200) {
+          console.log('la response '+response);
           setOffers(response.data); // Met à jour l'état des offres avec les données reçues depuis le backend
         } else {
           console.error('Erreur lors de la récupération des offres:', response.statusText);

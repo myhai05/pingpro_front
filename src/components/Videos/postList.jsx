@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
 import './videoList.css'; // Assurez-vous d'importer votre fichier CSS pour les styles des cartes
+import PropTypes from 'prop-types';
+
 
 const PostsList = ({ onSelectPost }) => {
   const [posts, setPosts] = useState([]);
@@ -43,6 +45,11 @@ const PostsList = ({ onSelectPost }) => {
       </div>
     </div>
   );
+};
+
+// Validation des props avec PropTypes
+PostsList.propTypes = {
+  onSelectPost: PropTypes.func.isRequired,
 };
 
 export default PostsList;

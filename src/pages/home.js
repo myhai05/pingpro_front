@@ -4,6 +4,8 @@ import './home.css';
 
 
 const Home = ({ offers }) => {
+  
+  
   return (
     <div>
       {/* Affichage des offres */}

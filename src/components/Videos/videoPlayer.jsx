@@ -76,7 +76,7 @@ const VideoList = ({ postId, userId, onGoBack }) => {
 
   return (
     <div>
-      <button onClick={onGoBack}>Acceuil</button>
+      <button onClick={onGoBack}>Retour</button>
       {loading ? (
         <p>Loading...</p>
       ) : (

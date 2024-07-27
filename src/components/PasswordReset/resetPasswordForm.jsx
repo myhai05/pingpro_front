@@ -41,7 +41,7 @@ const ResetPasswordForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>New Password:</label>
+          <label htmlFor="newPassword">New Password:</label>
           <input
             type="password"
             value={newPassword}
@@ -50,8 +50,9 @@ const ResetPasswordForm = () => {
           />
         </div>
         <div>
-          <label>Confirm Password:</label>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
+            id="confirmPassword"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
