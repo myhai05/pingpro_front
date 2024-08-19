@@ -1,31 +1,24 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../Context/authContext';
-import './videoList.css'; // Assurez-vous d'importer votre fichier CSS pour les styles des cartes
 import PropTypes from 'prop-types';
 
-
-const PostsList = ({ onSelectPost }) => {
+const PostsList = ({ userId, onSelectPost }) => {
   const [posts, setPosts] = useState([]);
-  const { user } = useContext(AuthContext);
-  const userId = user ? user.userId : null;
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}api/post/get-posts`, {
-          params: { userId }
+          params: { userId },
         });
+        console.log(response.data);
         setPosts(response.data);
-        console.log(response.traite);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
     };
 
-    if (userId) {
-      fetchPosts();
-    }
+    fetchPosts(); // Fetch posts for the selected user
   }, [userId]);
 
   const handlePostClick = (postId) => {
@@ -41,7 +34,7 @@ const PostsList = ({ onSelectPost }) => {
             <h3>{post.title}</h3>
             <p>{post.description}</p>
             <p>{post.traite}</p>
-            {/* Ajoutez d'autres informations du post si nécessaire */}
+            {/* Add more post details if needed */}
           </div>
         ))}
       </div>
@@ -49,8 +42,9 @@ const PostsList = ({ onSelectPost }) => {
   );
 };
 
-// Validation des props avec PropTypes
+// Validate props with PropTypes
 PostsList.propTypes = {
+  userId: PropTypes.string.isRequired,
   onSelectPost: PropTypes.func.isRequired,
 };
 

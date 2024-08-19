@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
 import './videoList.css';
+import NotificationButton from '../Notifications/notificationButton';
 
 const VideoList = ({ postId, userId, onGoBack }) => {
   const [video, setVideo] = useState(null); // State pour la vidéo actuelle
@@ -76,7 +77,7 @@ const VideoList = ({ postId, userId, onGoBack }) => {
 
   return (
     <div>
-      <button onClick={onGoBack}>Retour</button>
+      <button onClick={onGoBack}>Retour</button><NotificationButton />
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -111,6 +112,7 @@ const VideoList = ({ postId, userId, onGoBack }) => {
                 ))}
               </div>
               <button onClick={handleSaveChapters}>Save Chapters</button>
+              
             </div>
           ) : (
             <p>No video available</p>

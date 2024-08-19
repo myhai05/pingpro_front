@@ -16,6 +16,8 @@ import PaymentSuccess from './Payment/paymentSuccess.js';
 import PaymentCancel from './Payment/payementCancel.js';
 import Payment from './Payment/stripePromise.js';
 import Footer from './footer.jsx';
+import Dashboard from './Dashboard/dashboard.jsx';
+import UserInfo from './User/userInfo.jsx';
 
 
 const AppRoutes = () => {
@@ -27,7 +29,6 @@ const AppRoutes = () => {
           <Header />
           <Routes>
             <Route path="/" element={<OfferFetcher><Home /></OfferFetcher>} />
-            <Route path="/private" element={ <Private />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/request-pass" element={<RequestResetForm />} /> 
@@ -38,14 +39,29 @@ const AppRoutes = () => {
                 <Logout />
               </PrivateRoute>
             } />            
+            <Route path="/private" element={
+              <PrivateRoute>
+                <Private />
+              </PrivateRoute>
+            } />            
             <Route path='/offer-form' element={
               <PrivateRoute>
                 <AddOfferForm />
               </PrivateRoute>
             } />
+            <Route path='/dashboard' element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            } />
             <Route path='/upload-form' element={
               <PrivateRoute>
                 <VideoUploadForm />
+              </PrivateRoute>
+            } />
+            <Route path='/user-account' element={
+              <PrivateRoute>
+                <UserInfo />
               </PrivateRoute>
             } />
             <Route path="/success" element={<PaymentSuccess />} />  {/* Ajoutez cette ligne */}

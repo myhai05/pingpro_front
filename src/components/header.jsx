@@ -1,76 +1,53 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from './Context/authContext';
 import Logout from './Auth/logout';
-import Payment from './Payment/stripePromise';
-import OfferFetcher from './offer/offerFetchers';
-
-const headerStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  padding: '10px 20px',
-  backgroundColor: '#f8f8f8'
-};
-
-const navStyle = {
-  listStyle: 'none',
-  margin: 0,
-  padding: 0,
-  display: 'flex',
-  gap: '15px'
-};
-
-const linkStyle = {
-  textDecoration: 'none',
-  color: '#333'
-};
-
-const logoutContainerStyle = {
-  marginLeft: 'auto'
-};
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 const Header = () => {
-  const { user } = useContext(AuthContext);  // Utiliser le contexte pour obtenir l'utilisateur
-  const [isPaid, setIsPaid] = useState(false);
-
-  console.log(user);
- 
-  const handlePaymentSuccess = () => {
-    setIsPaid(true);
-  };
-
-  
+  const { user } = useContext(AuthContext); // Utiliser le contexte pour obtenir l'utilisateur
 
   return (
-    <header style={headerStyle}>
-      <Link to={user ? "/private" : "/"} style={{ ...linkStyle, fontSize: '24px', fontWeight: 'bold' }}>
-        PingPro
-      </Link>
-      <nav>
-        <ul style={navStyle}>
-          {user ? (
-            <>
-              {user.role === 'admin' && (
-                <li><Link to="/offer-form" style={linkStyle}>Nouvelle offre</Link></li>
-              )}
-              <li><Link to="/private" style={linkStyle}>Espace privé</Link></li>
-                <li><Link to="/upload-form" style={linkStyle}>Transmettre une vidéo</Link></li>
-               
-              <div style={logoutContainerStyle}>
+    <Navbar expand="lg" style={{ backgroundColor: '#B227C2' }}>
+      <Container style={{ backgroundColor: '#86398F' }}>
+        <Navbar.Brand as={Link} to={user ? "/user-account" : "/"} style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
+          PingPro
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto">
+            {user ? (
+              <>
+                {user.role === 'admin' && (
+                  <Nav.Link as={Link} to="/dashboard" style={{ color: 'white' }}>Dashboard</Nav.Link>
+                )}
+                <Nav.Link as={Link} to="/private" style={{ color: 'white' }}>Espace privé</Nav.Link>
+                <Nav.Link as={Link} to="/upload-form" style={{ color: 'white' }}>Transmettre une vidéo</Nav.Link>
+                <Nav.Link as={Link} to="/user-account" style={{ color: 'white' }}>Mon compte</Nav.Link>
+              </>
+            ) : null}
+          </Nav>
+          <Nav className="ms-auto">
+            {user ? (
+              <Nav.Link as="div" style={{ color: 'white' }}>
                 <Logout />
-              </div>
-            </>
-          ) : (
-            <>
-              <li><Link to="/login" style={linkStyle}>Se connecter</Link></li>
-              <li><Link to="/register" style={linkStyle}>S'inscrire</Link></li>
-            </>
-          )}
-        </ul>
-      </nav>
-    </header>
+              </Nav.Link>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/login" style={{ color: 'white' }}>Se connecter</Nav.Link>
+                <Nav.Link as={Link} to="/register" style={{ color: 'white' }}>S'inscrire</Nav.Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
 export default Header;
+
+
+

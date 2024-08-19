@@ -1,18 +1,12 @@
-import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 import AppRoutes from './components/appRoutes';
-import { AuthProvider, AuthContext } from './components/Context/authContext';
+
 
 function App() {
-
-  
-
   return (
-    <AuthProvider >   
+        <div>
        <AppRoutes />
-    </AuthProvider>
+       </div>
   );
 }
 

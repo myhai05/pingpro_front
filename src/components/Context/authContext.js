@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {  // `children` est reçu via les props
       try {
         // Requête pour obtenir le jeton d'authentification
         const res = await axios.get(`${process.env.REACT_APP_API_URL}jwtid`, { withCredentials: true });
+        console.log(res);
         setUser(res.data.responseData);  // Mise à jour de l'état utilisateur avec les données reçues
       } catch (err) {
         console.log("No token");  // Gestion des erreurs

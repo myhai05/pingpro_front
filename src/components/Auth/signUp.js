@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -25,6 +25,7 @@ const signUpSchema = Yup.object().shape({
 });
 
 const SignUp = () => {
+  const [serverError, setServerError] = useState('');
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     console.log(values);
@@ -38,6 +39,7 @@ const SignUp = () => {
       if (response.status === 200) {
         alert('Inscription réussie ! Un email de vérification a été envoyé!');
         resetForm(); // Réinitialiser le formulaire après succès
+        setServerError(''); // Réinitialiser le message d'erreur en cas de succès
       } else {
         throw new Error('Erreur lors de l\'inscription');
       }
@@ -45,7 +47,11 @@ const SignUp = () => {
       setSubmitting(false);
     } catch (error) {
       console.error('Erreur:', error);
-      alert('Une erreur est survenue lors de l\'inscription.');
+      if (error.response && error.response.data) {
+        setServerError(error.response.data); // Stocker le message d'erreur du serveur
+      } else {
+        setServerError('Une erreur est survenue lors de l\'inscription.');
+      }
       setSubmitting(false);
     }
   };
@@ -53,6 +59,7 @@ const SignUp = () => {
   return (
     <div className="container">
       <h1>Inscription</h1>
+      {serverError && <div className="server-error">{serverError}</div>} {/* Afficher le message d'erreur */}
       <Formik
         initialValues={{
           firstName: '',

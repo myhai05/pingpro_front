@@ -40,7 +40,7 @@
   button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #86398F;
     color: white;
     border: none;
     border-radius: 5px;
@@ -56,4 +56,11 @@
     width: auto;
     margin-right: 10px;
   }
+
+  .server-error {
+    color: red;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
   
