@@ -47,7 +47,7 @@ const SignUp = () => {
       setSubmitting(false);
     } catch (error) {
       console.error('Erreur:', error);
-      if (error.response && error.response.data) {
+      if (error.response?.data) {
         setServerError(error.response.data); // Stocker le message d'erreur du serveur
       } else {
         setServerError('Une erreur est survenue lors de l\'inscription.');
