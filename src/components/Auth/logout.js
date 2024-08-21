@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { AuthContext } from '../Context/authContext';
 import Cookies from 'js-cookie';
 
@@ -13,7 +11,7 @@ const Logout = () => {
   const { setUser } = useContext(AuthContext);
 
   const removeCookie = (key) => {
-    if (window !== "undefined") {
+    if (window != "undefined") {
       Cookies.remove(key, { expires: 1 });
     }
   };

@@ -1,13 +1,12 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // Création d'un contexte d'authentification
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {  // `children` est reçu via les props
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);  // État pour stocker l'utilisateur
-  
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -22,10 +21,13 @@ const AuthProvider = ({ children }) => {  // `children` est reçu via les props
     };
     fetchToken();  // Appel de la fonction de récupération du jeton
   }, []);  // useEffect s'exécute une seule fois après le montage du composant
-      
+
+  // Utilisation de useMemo pour mémoriser la valeur passée au fournisseur de contexte
+  const contextValue = useMemo(() => ({ user, setUser }), [user]);
+
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}  
+    <AuthContext.Provider value={contextValue}>
+      {children}
     </AuthContext.Provider>
   );
 };
@@ -36,3 +38,4 @@ AuthProvider.propTypes = {
 };
 
 export { AuthContext, AuthProvider };
+

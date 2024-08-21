@@ -1,4 +1,3 @@
-// src/components/OfferList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './dashboard.css';
@@ -24,21 +23,27 @@ const OfferList = () => {
     fetchOffers();
   }, []);
 
+  // Handle different states
+  let content;
+  if (loading) {
+    content = <p>Loading...</p>;
+  } else if (error) {
+    content = <p>{error}</p>;
+  } else {
+    content = (
+      <ul>
+        {offers.map((offer) => (
+          <li key={offer._id}>{offer.title}</li> // Adaptez à vos données
+        ))}
+      </ul>
+    );
+  }
+
   return (
     <div>
       <h2>Offers</h2>
       <Link to="/offer-form" className="linkStyle">Nouvelle offre</Link>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <ul>
-          {offers.map((offer) => (
-            <li key={offer._id}>{offer.title}</li> // Adaptez à vos données
-          ))}
-        </ul>
-      )}
+      {content}
     </div>
   );
 };

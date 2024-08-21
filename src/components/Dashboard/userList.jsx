@@ -1,6 +1,6 @@
-// src/components/UserList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types'; // Importer PropTypes
 import './dashboard.css'; // Assuming you'll add some CSS for styling
 
 const UserList = ({ onSelectUser }) => {
@@ -23,30 +23,41 @@ const UserList = ({ onSelectUser }) => {
     fetchUsers();
   }, []);
 
+  // Déclaration des variables d'état pour le rendu
+  let content;
+  if (loading) {
+    content = <p>Loading...</p>;
+  } else if (error) {
+    content = <p>{error}</p>;
+  } else {
+    content = (
+      <div className="user-cards-container">
+        {users.map((user) => (
+          <button 
+            key={user._id} 
+            className="user-card"
+            onClick={() => onSelectUser(user._id)}
+            type="button"
+          >
+            <h3>{user.lastName} {user.firstName}</h3>
+            <p>{user.email}</p>
+          </button>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2>Users</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <div className="user-cards-container">
-          {users.map((user) => (
-            <div 
-              key={user._id} 
-              className="user-card" 
-              onClick={() => onSelectUser(user._id)}
-            >
-              <h3>{user.lastName} {user.firstName}</h3>
-              <p>{user.email}</p>
-              {/* Add more user details if needed */}
-            </div>
-          ))}
-        </div>
-      )}
+      {content}
     </div>
   );
+};
+
+// Ajouter la validation des props
+UserList.propTypes = {
+  onSelectUser: PropTypes.func.isRequired, // Définir onSelectUser comme une fonction requise
 };
 
 export default UserList;

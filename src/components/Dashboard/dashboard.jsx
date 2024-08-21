@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import UserList from './userList'; 
 import OfferList from './offerList';
 import Display from './display';
-import NotificationList from './notifications';
 import './dashboard.css'; // Assurez-vous que le fichier CSS est à jour
 import DisplayNotifications from './notificationsDisplay';
 
@@ -12,32 +11,40 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="sidebar">
-        <ul>
-          <li
+      <ul>
+        <li>
+          <button
             className={activeTab === 'user' ? 'active' : ''}
             onClick={() => setActiveTab('user')}
           >
             User
-          </li>
-          <li
+          </button>
+        </li>
+        <li>
+          <button
             className={activeTab === 'notifications' ? 'active' : ''}
             onClick={() => setActiveTab('notifications')}
           >
             Notifications
-          </li>
-          <li
+          </button>
+        </li>
+        <li>
+          <button
             className={activeTab === 'offers' ? 'active' : ''}
             onClick={() => setActiveTab('offers')}
           >
             Offres
-            </li>
-          <li
+          </button>
+        </li>
+        <li>
+          <button
             className={activeTab === 'display' ? 'active' : ''}
             onClick={() => setActiveTab('display')}
           >
             Posts
-          </li>
-        </ul>
+          </button>
+        </li>
+      </ul>
       </div>
       <div className="content">
         {activeTab === 'user' && <UserList />}

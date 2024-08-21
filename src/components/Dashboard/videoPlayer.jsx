@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import ReactPlayer from 'react-player';
+import PropTypes from 'prop-types'; // Importer PropTypes
 import '../Videos/videoList.css';
 
 const VideoList = ({ postId, onGoBack }) => {
-    console.log(postId);
     const [video, setVideo] = useState(null); // State pour la vidéo actuelle
     const [chapters, setChapters] = useState([]); // State pour les chapitres actuels
     const [loading, setLoading] = useState(true); // State pour gérer le chargement
@@ -75,21 +75,21 @@ const VideoList = ({ postId, onGoBack }) => {
 
     const handleMarkAsProcessed = async () => {
         try {
-          const response = await axios.put(`${process.env.REACT_APP_API_URL}api/post/mark-as-processed`, {
-            videoId: video._id,
-          });
-          if (response.status === 200) {
-            setVideo({ ...video, traite: 'Traité' });
-            alert('Video marked as processed');
-          } else {
-            console.error('Failed to mark video as processed:', response.statusText);
-            alert('Failed to mark video as processed');
-          }
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}api/post/mark-as-processed`, {
+                videoId: video._id,
+            });
+            if (response.status === 200) {
+                setVideo({ ...video, traite: 'Traité' });
+                alert('Video marked as processed');
+            } else {
+                console.error('Failed to mark video as processed:', response.statusText);
+                alert('Failed to mark video as processed');
+            }
         } catch (error) {
-          console.error('Error marking video as processed:', error);
-          alert('Failed to mark video as processed');
+            console.error('Error marking video as processed:', error);
+            alert('Failed to mark video as processed');
         }
-      };
+    };
 
     return (
         <div>
@@ -109,27 +109,34 @@ const VideoList = ({ postId, onGoBack }) => {
                                 ref={playerRef}
                             />
                             <button onClick={handleMarkAsProcessed} disabled={video.traite === 'Traité'}>
-                                   {video.traite === 'En cours' ? 'Marquer comme Traité' : 'Vidéo Traité'}
+                                {video.traite === 'En cours' ? 'Marquer comme Traité' : 'Vidéo Traité'}
                             </button>
                             <button onClick={handleAddChapter}>Add Chapter</button>
                             <div className="chapters-container">
-                                {chapters.map((chapter, index) => (
-                                    <div
+                                {chapters.map((chapter) => (
+                                    <button
+                                        key={chapter.id} // Utilisation de l'identifiant unique comme clé
                                         className="chapter"
-                                        key={index}
                                         onClick={() => handleChapterClick(chapter.time)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                handleChapterClick(chapter.time);
+                                            }
+                                        }}
+                                        tabIndex="0"
                                     >
                                         <p>Chapter at {chapter.time ? chapter.time.toFixed(2) : 'unknown'} seconds</p>
                                         <input
                                             type="text"
                                             value={chapter.comment}
-                                            onChange={(e) => handleCommentChange(index, e.target.value)}
+                                            onChange={(e) => handleCommentChange(chapter.id, e.target.value)} // Mettez à jour la fonction si nécessaire
                                             placeholder="Add comment"
                                             className="chapter-input"
                                         />
-                                    </div>
+                                    </button>
                                 ))}
                             </div>
+
                             <button onClick={handleSaveChapters}>Save Chapters</button>
                         </div>
                     ) : (
@@ -139,6 +146,12 @@ const VideoList = ({ postId, onGoBack }) => {
             )}
         </div>
     );
+};
+
+// Définir les PropTypes
+VideoList.propTypes = {
+    postId: PropTypes.string.isRequired,
+    onGoBack: PropTypes.func.isRequired,
 };
 
 export default VideoList;

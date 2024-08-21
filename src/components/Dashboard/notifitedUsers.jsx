@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 const NotifitedUsers = ({ onSelectUser }) => {
   const [users, setUsers] = useState([]);
@@ -22,14 +23,24 @@ const NotifitedUsers = ({ onSelectUser }) => {
     <div>
       <h3>Users who sent notifications</h3>
       <ul>
-        {users.map((userId) => (
-          <li key={userId} onClick={() => onSelectUser(userId)}>
+      {users.map((userId) => (
+        <li key={userId}>
+          <button 
+            type="button" 
+            onClick={() => onSelectUser(userId)} 
+            style={{ all: 'unset', cursor: 'pointer' }}
+          >
             User {userId}
-          </li>
-        ))}
-      </ul>
+          </button>
+        </li>
+      ))}
+    </ul>
     </div>
   );
+};
+
+NotifitedUsers.propTypes = {
+  onSelectUser: PropTypes.func.isRequired,  // onSelectUser doit être une fonction et est requis
 };
 
 export default NotifitedUsers;

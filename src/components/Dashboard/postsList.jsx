@@ -21,21 +21,22 @@ const PostsList = ({ userId, onSelectPost }) => {
     fetchPosts(); // Fetch posts for the selected user
   }, [userId]);
 
-  const handlePostClick = (postId) => {
-    onSelectPost(postId);
-  };
-
   return (
     <div className="posts-list">
       <h2>Posts</h2>
       <div className="post-cards-container">
         {posts.map(post => (
-          <div key={post._id} className="post-card" onClick={() => handlePostClick(post._id)}>
+          <button
+            key={post._id}
+            className="post-card"
+            onClick={() => onSelectPost(post._id)}
+            type="button" // Ensures the element is treated as a button
+          >
             <h3>{post.title}</h3>
             <p>{post.description}</p>
             <p>{post.traite}</p>
             {/* Add more post details if needed */}
-          </div>
+          </button>
         ))}
       </div>
     </div>
