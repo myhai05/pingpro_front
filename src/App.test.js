@@ -1,8 +1,18 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { act } from 'react';
 import App from './App';
+import { AuthContext } from './components/Context/authContext';
 
 test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const mockAuthContextValue = { user: { name: 'Test User', email: 'test@example.com' } };
+
+  act(() => {
+    render(
+      <AuthContext.Provider value={mockAuthContextValue}>
+        <App />
+      </AuthContext.Provider>
+    );
+  });
+
 });

@@ -20,6 +20,7 @@
     "react-player": "^2.16.0",
     "react-router-dom": "^6.24.0",
     "react-scripts": "^5.0.1",
+    "react-test-renderer": "^18.3.1",
     "socket.io-client": "^4.7.5",
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
@@ -36,6 +37,11 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/node/axios.cjs"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -49,9 +55,15 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.25.2",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.24.7",
+    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-react": "^7.24.7",
     "axios-mock-adapter": "^1.22.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^29.7.0",
+    "eslint": "^8.57.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.34.3",
     "jest": "^27.5.1"

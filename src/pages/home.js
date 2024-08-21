@@ -6,6 +6,10 @@ import ImageContainer from '../components/Display/imageContainer';
 import PropTypes from 'prop-types';
 
 const Home = ({ offers }) => {
+  if (!offers || offers.length === 0) {
+    return <p>No offers available.</p>;
+  }
+
   return (
     <Container>
       <ImageContainer />
@@ -43,9 +47,3 @@ Home.propTypes = {
 };
 
 export default Home;
-
-
-
-
-
-  
