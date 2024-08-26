@@ -3,6 +3,8 @@ import PostsList from './Videos/postList';
 import VideoList from './Videos/videoPlayer';
 import { AuthContext } from './Context/authContext';
 import PropTypes from 'prop-types';
+import UserInfo from './User/userInfo';
+
 
 const Private = () => {
   const [selectedPostId, setSelectedPostId] = useState(null);
@@ -13,16 +15,26 @@ const Private = () => {
   };
   
   const handleGoBack = () => {
-    setSelectedPostId(null); // Afficher à nouveau la liste des posts
+    setSelectedPostId(null); // Show the posts list again
   };
 
   return (
-    <div>
-      {!selectedPostId ? (
-        <PostsList onSelectPost={handleSelectPost} />
-      ) : (
-        <VideoList postId={selectedPostId} userId={user ? user.userId : null} onGoBack={handleGoBack} />
-      )}
+    <div className="container-fluid">
+      <div className="row">
+        {/* UserInfo on 1/3 of the page */}
+        <div className="col-md-4">
+          <UserInfo /> {/* Render the UserInfo component */}
+        </div>
+
+        {/* PostsList or VideoList on 2/3 of the page */}
+        <div className="col-md-8">
+          {!selectedPostId ? (
+            <PostsList onSelectPost={handleSelectPost} />
+          ) : (
+            <VideoList postId={selectedPostId} userId={user ? user.userId : null} onGoBack={handleGoBack} />
+          )}
+        </div>
+      </div>
     </div>
   );
 };

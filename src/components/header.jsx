@@ -25,7 +25,6 @@ const Header = () => {
                 )}
                 <Nav.Link as={Link} to="/private" style={{ color: 'white' }}>Espace privé</Nav.Link>
                 <Nav.Link as={Link} to="/upload-form" style={{ color: 'white' }}>Transmettre une vidéo</Nav.Link>
-                <Nav.Link as={Link} to="/user-account" style={{ color: 'white' }}>Mon compte</Nav.Link>
               </>
             ) : null}
           </Nav>

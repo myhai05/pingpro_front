@@ -17,7 +17,6 @@ import PaymentCancel from './Payment/payementCancel.js';
 import Payment from './Payment/stripePromise.js';
 import Footer from './footer.jsx';
 import Dashboard from './Dashboard/dashboard.jsx';
-import UserInfo from './User/userInfo.jsx';
 
 
 const AppRoutes = () => {
@@ -57,11 +56,6 @@ const AppRoutes = () => {
             <Route path='/upload-form' element={
               <PrivateRoute>
                 <VideoUploadForm />
-              </PrivateRoute>
-            } />
-            <Route path='/user-account' element={
-              <PrivateRoute>
-                <UserInfo />
               </PrivateRoute>
             } />
             <Route path="/success" element={<PaymentSuccess />} />  {/* Ajoutez cette ligne */}
