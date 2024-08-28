@@ -4,9 +4,9 @@ import { AuthContext } from '../Context/authContext';
 
 
 const NotificationButton = () => {
-    const { user, setUser } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const userId = user ? user.userId : null;
-
+   
     const [credits, setCredits] = useState(0);
 
     useEffect(() => {

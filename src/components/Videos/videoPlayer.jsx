@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MarkAsProcessed from './markAsProcessed';
 import SaveChapters from './saveChapters';
 import ChapterManager from './chapterManager';
+import NotificationButton from '../Notifications/notificationButton';
 
 const VideoList = ({ postId, onGoBack }) => {
     const [video, setVideo] = useState(null);
@@ -40,6 +41,7 @@ const VideoList = ({ postId, onGoBack }) => {
                         videoUrl={video.videoUrl}
                     />
                     <SaveChapters postId={postId} chapters={chapters} />
+                    <NotificationButton />
                 </div>
             ) : (
                 <p>No video available</p>
