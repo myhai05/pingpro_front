@@ -17,6 +17,7 @@ import PaymentCancel from './Payment/payementCancel.js';
 import Payment from './Payment/stripePromise.js';
 import Footer from './footer.jsx';
 import Dashboard from './Dashboard/dashboard.jsx';
+import EditProfile from './User/editProfile.jsx';
 
 
 const AppRoutes = () => {
@@ -32,6 +33,7 @@ const AppRoutes = () => {
             <Route path="/register" element={<SignUp />} />
             <Route path="/request-pass" element={<RequestResetForm />} /> 
             <Route path='/reset-form/:token' element={<ResetPasswordForm />} />
+            <Route path='/edit-profile' element={<EditProfile />} />
           
             <Route path="/logout" element={
               <PrivateRoute>
@@ -49,14 +51,14 @@ const AppRoutes = () => {
               </PrivateRoute>
             } />
             <Route path='/dashboard' element={
-              <PrivateRoute>
+              
                 <Dashboard />
-              </PrivateRoute>
+             
             } />
             <Route path='/upload-form' element={
-              <PrivateRoute>
+              
                 <VideoUploadForm />
-              </PrivateRoute>
+              
             } />
             <Route path="/success" element={<PaymentSuccess />} />  {/* Ajoutez cette ligne */}
             <Route path="/cancel" element={<PaymentCancel />} />  {/* Ajoutez cette ligne */}

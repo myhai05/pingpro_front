@@ -4,7 +4,7 @@ import { CardElement, useStripe, useElements, Elements } from '@stripe/react-str
 import axios from "axios";
 import { AuthContext } from "../Context/authContext";
 import { useNavigate } from "react-router-dom";
-import PaymentForm from "./payementForm";
+
 
 
 const stripePromise = loadStripe('pk_test_51PbH9pLLtIydrNlAxa7LnYkDXw0FudnSTRIEsdVpdktSONB1ktdwDpQCMQlmowzIGU9kePqWVlFxcMMOywrDJDLP00hOszgx7C'); // Remplacez par votre clé publique Stripe
@@ -52,9 +52,9 @@ const Payment = ({ offers, onPaymentSuccess }) => {
         <h3>Choisissez une offre</h3>
         <ul>
           {offers.map((offer) => (
-            <li key={offer.id}>
+            <div key={offer.id} className="col-md-4 mb-3">
               <button onClick={() => setSelectedOffer(offer)}>{offer.title} - ${offer.price}</button>
-            </li>
+              </div> 
           ))}
         </ul>
         {selectedOffer && (

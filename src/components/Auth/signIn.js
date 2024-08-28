@@ -31,12 +31,18 @@ const SignIn = () => {
           withCredentials: true,
         }
       );
-      
+  
       if (response.status === 200) {
-        console.log(response);
-        setUser(response.data.responseData);
+        const userData = response.data.responseData;
+        setUser(userData);
+  
         alert('Connexion réussie !');
-        navigate('/offers');
+  
+        if (userData.role === 'admin') {
+          navigate('/dashboard');
+        } else {
+          navigate('/offers');
+        }
       } else {
         throw new Error('Erreur lors de la connexion');
       }
@@ -47,6 +53,7 @@ const SignIn = () => {
       setSubmitting(false);
     }
   };
+  
 
   return (
     <div className="container">

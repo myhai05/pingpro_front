@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import PostsList from './Videos/postList';
 import VideoList from './Videos/videoPlayer';
 import { AuthContext } from './Context/authContext';
-import PropTypes from 'prop-types';
 import UserInfo from './User/userInfo';
 
 
