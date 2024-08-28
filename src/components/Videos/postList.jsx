@@ -17,12 +17,10 @@ const PostsList = ({ onSelectPost }) => {
           params: { userId }
         });
         setPosts(response.data);
-        console.log(response.traite);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
     };
-
     if (userId) {
       fetchPosts();
     }
@@ -41,7 +39,6 @@ const PostsList = ({ onSelectPost }) => {
             <h3>{post.title}</h3>
             <p>{post.description}</p>
             <p>{post.traite}</p>
-            {/* Ajoutez d'autres informations du post si nécessaire */}
           </div>
         ))}
       </div>

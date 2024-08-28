@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <Navbar expand="lg" style={{ backgroundColor: '#B227C2' }}>
       <Container style={{ backgroundColor: '#86398F' }}>
-        <Navbar.Brand as={Link} to={user ? "/user-account" : "/"} style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
+        <Navbar.Brand as={Link} to={"/" } style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
           PingPro
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

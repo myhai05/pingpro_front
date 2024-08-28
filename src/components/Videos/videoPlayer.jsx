@@ -1,140 +1,56 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReactPlayer from 'react-player';
-import './videoList.css';
-import NotificationButton from '../Notifications/notificationButton';
+import PropTypes from 'prop-types';
+import MarkAsProcessed from './markAsProcessed';
+import SaveChapters from './saveChapters';
+import ChapterManager from './chapterManager';
 
-const VideoList = ({ postId, userId, onGoBack }) => {
-  const [video, setVideo] = useState(null); // State pour la vidéo actuelle
-  const [chapters, setChapters] = useState([]); // State pour les chapitres actuels
-  const [loading, setLoading] = useState(true); // State pour gérer le chargement
+const VideoList = ({ postId, onGoBack }) => {
+    const [video, setVideo] = useState(null);
+    const [chapters, setChapters] = useState([]);
 
-  const playerRef = useRef(null);
+    useEffect(() => {
+        const fetchVideo = async () => {
+            try {
+                const { data } = await axios.get(`${process.env.REACT_APP_API_URL}api/post/get-video`, { params: { postId } });
+                setVideo(data[0]);
+                setChapters(data[0].chapters || []);
+            } catch (error) {
+                console.error('Error fetching video:', error);
+            } 
+        };
+        fetchVideo();
+    }, [postId]);
 
-  useEffect(() => {
-    if (!postId || !userId) {
-      setLoading(false); // Si postId ou userId manquent, on arrête le chargement
-      return;
-    }
-
-    const fetchVideo = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}api/post/get-video`, {
-          params: { userId, postId },
-        });
-        console.log(response);
-        setVideo(response.data[0]); // On suppose qu'on reçoit une seule vidéo
-        setChapters(response.data[0].chapters || []); // Mettre à jour les chapitres de la vidéo actuelle
-        setLoading(false); // Fin du chargement après récupération de la vidéo
-      } catch (error) {
-        console.error('Error fetching video:', error);
-        setLoading(false); // Gestion d'erreur : arrêt du chargement
-      }
-    };
-
-    fetchVideo();
-  }, [postId, userId]);
-
-  const handleAddChapter = () => {
-    if (playerRef.current) {
-      const time = playerRef.current.getCurrentTime();
-      setChapters([...chapters, { time, comment: '' }]);
-    }
-  };
-
-  const handleCommentChange = (index, newComment) => {
-    const updatedChapters = [...chapters];
-    updatedChapters[index].comment = newComment;
-    setChapters(updatedChapters);
-  };
-
-  const handleSaveChapters = async () => {
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}api/post/save-chapters`, {
-        postId,
-        chapters,
-      });
-      console.log(response);
-      if (response.status === 200) {
-        alert('Chapters saved successfully');
-        // Réinitialiser les chapitres après sauvegarde réussie si nécessaire
-        // setChapters([]);
-      } else {
-        console.error('Failed to save chapters:', response.statusText);
-        alert('Failed to save chapters');
-      }
-    } catch (error) {
-      console.error('Error saving chapters:', error);
-      alert('Failed to save chapters');
-    }
-  };
-
-  const handleChapterClick = (time) => {
-    if (playerRef.current) {
-      playerRef.current.seekTo(time);
-    }
-  };
-
-  return (
-    <div>
-      <button onClick={onGoBack}>Retour</button><NotificationButton />
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
+    return (
         <div>
-          <h2>Video</h2>
-          {video ? (
-            <div>
-              <h3>{video.title}</h3>
-              <p>{video.description}</p>
-              <ReactPlayer
-                url={`${process.env.REACT_APP_API_URL}${video.videoUrl.replace(/\\/g, '/')}`}
-                controls
-                ref={playerRef}
-              />
-              <button onClick={handleAddChapter}>Add Chapter</button>
-              <div className="chapters-container">
-                {chapters.map((chapter, index) => (
-                  <div
-                    className="chapter"
-                    key={index}
-                    onClick={() => handleChapterClick(chapter.time)}
-                  >
-                    <p>Chapter at {chapter.time ? chapter.time.toFixed(2) : 'unknown'} seconds</p>
-                    <input
-                      type="text"
-                      value={chapter.comment}
-                      onChange={(e) => handleCommentChange(index, e.target.value)}
-                      placeholder="Add comment"
-                      className="chapter-input"
+            <button onClick={onGoBack}>Retour</button>
+            {video ? (
+                <div>
+                    <h2>{video.title}</h2>
+                    <p>{video.description}</p>
+                    <MarkAsProcessed
+                        videoId={video._id}
+                        isProcessed={video.traite === 'Traité'}
+                        onMarkAsProcessed={() => setVideo({ ...video, traite: 'Traité' })}
                     />
-                  </div>
-                ))}
-              </div>
-              <button onClick={handleSaveChapters}>Save Chapters</button>
-              
-            </div>
-          ) : (
-            <p>No video available</p>
-          )}
+                    <ChapterManager
+                        chapters={chapters}
+                        setChapters={setChapters}
+                        videoUrl={video.videoUrl}
+                    />
+                    <SaveChapters postId={postId} chapters={chapters} />
+                </div>
+            ) : (
+                <p>No video available</p>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
+};
+
+VideoList.propTypes = {
+    postId: PropTypes.string.isRequired,
+    onGoBack: PropTypes.func.isRequired,
 };
 
 export default VideoList;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

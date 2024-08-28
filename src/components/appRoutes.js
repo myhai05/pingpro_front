@@ -10,7 +10,6 @@ import ResetPasswordForm from './PasswordReset/resetPasswordForm';
 import AddOfferForm from './offer/addOfferForm';
 import OfferFetcher from './offer/offerFetchers';
 import Header from './header.jsx';
-import PrivateRoute from './Context/privateRoutes.js';
 import VideoUploadForm from './Videos/videoUploadForm.jsx';
 import PaymentSuccess from './Payment/paymentSuccess.js';
 import PaymentCancel from './Payment/payementCancel.js';
@@ -34,32 +33,11 @@ const AppRoutes = () => {
             <Route path="/request-pass" element={<RequestResetForm />} /> 
             <Route path='/reset-form/:token' element={<ResetPasswordForm />} />
             <Route path='/edit-profile' element={<EditProfile />} />
-          
-            <Route path="/logout" element={
-              <PrivateRoute>
-                <Logout />
-              </PrivateRoute>
-            } />            
-            <Route path="/private" element={
-              <PrivateRoute>
-                <Private />
-              </PrivateRoute>
-            } />            
-            <Route path='/offer-form' element={
-              <PrivateRoute>
-                <AddOfferForm />
-              </PrivateRoute>
-            } />
-            <Route path='/dashboard' element={
-              
-                <Dashboard />
-             
-            } />
-            <Route path='/upload-form' element={
-              
-                <VideoUploadForm />
-              
-            } />
+            <Route path="/logout" element={<Logout />} />            
+            <Route path="/private" element={<Private />} />            
+            <Route path='/offer-form' element={<AddOfferForm />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/upload-form' element={<VideoUploadForm />} />
             <Route path="/success" element={<PaymentSuccess />} />  {/* Ajoutez cette ligne */}
             <Route path="/cancel" element={<PaymentCancel />} />  {/* Ajoutez cette ligne */}
             <Route path="/offers" element={<OfferFetcher><Payment /></OfferFetcher>} />

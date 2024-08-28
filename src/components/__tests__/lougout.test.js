@@ -5,8 +5,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import Logout from '../Auth/logout';
 import { AuthContext } from '../Context/authContext';
-import Cookies from 'js-cookie';
-import { act } from 'react';
+
 
 // Create a mock axios instance
 const mockAxios = new MockAdapter(axios);

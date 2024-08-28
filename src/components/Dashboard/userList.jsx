@@ -22,7 +22,6 @@ const UserList = ({ onSelectUser }) => {
 
     fetchUsers();
   }, []);
-
   // Déclaration des variables d'état pour le rendu
   let content;
   if (loading) {

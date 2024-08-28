@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PostsList from './postsList';
-import VideoList from './videoPlayer';
+import VideoList from '../Videos/videoPlayer';
 import UserList from './userList';
 
 
