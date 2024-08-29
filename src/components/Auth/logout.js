@@ -1,16 +1,11 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
-import Cookies from 'js-cookie';
+
 
 const Logout = () => {
 
   const { setUser } = useContext(AuthContext);
-/*  const removeCookie = (key) => {
-    if (window != "undefined") {
-      Cookies.remove(key, { expires: 1 });
-    }
-  };*/
 
   const logout = async () => {
     try {
@@ -20,7 +15,6 @@ const Logout = () => {
         withCredentials: true,
       });
 
-      //removeCookie("jwt");
       setUser(null);
     } catch (err) {
       console.log(err);

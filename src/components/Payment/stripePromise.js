@@ -1,15 +1,15 @@
 import React, { useState, useContext} from "react";
 import { loadStripe } from '@stripe/stripe-js';
-import { CardElement, useStripe, useElements, Elements } from '@stripe/react-stripe-js';
 import axios from "axios";
 import { AuthContext } from "../Context/authContext";
 import { useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 
 
 const stripePromise = loadStripe('pk_test_51PbH9pLLtIydrNlAxa7LnYkDXw0FudnSTRIEsdVpdktSONB1ktdwDpQCMQlmowzIGU9kePqWVlFxcMMOywrDJDLP00hOszgx7C'); // Remplacez par votre clé publique Stripe
 
-const Payment = ({ offers, onPaymentSuccess }) => {
+const Payment = ({ offers }) => {
 
   
   const [selectedOffer, setSelectedOffer] = useState(null);
@@ -68,7 +68,15 @@ const Payment = ({ offers, onPaymentSuccess }) => {
       </div>
     );
   };
+
+  Payment.propTypes = {
+    offers: PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+  };
   
   export default Payment;
-/*
-   */

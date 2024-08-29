@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 
 const DisplayContent = ({ UserComponent, PostComponent, VideoComponent }) => {
   const [selectedUserId, setSelectedUserId] = useState(null);
@@ -41,6 +42,12 @@ const DisplayContent = ({ UserComponent, PostComponent, VideoComponent }) => {
       )}
     </div>
   );
+};
+
+DisplayContent.propTypes = {
+  UserComponent: PropTypes.func.isRequired,
+  PostComponent: PropTypes.func.isRequired,
+  VideoComponent: PropTypes.func.isRequired,
 };
 
 export default DisplayContent;

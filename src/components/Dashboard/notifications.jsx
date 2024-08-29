@@ -9,8 +9,8 @@ const NotificationList = () => {
     socket.current = io(process.env.REACT_APP_API_URL);
 
     socket.current.on('notification', (data) => {
-        console.log('Notification received:', data); // Visualiser les données reçues
-      setNotifications((prevNotifications) => [...prevNotifications, data.userId]);
+      console.log('Notification received:', data); // Visualiser les données reçues
+      setNotifications((prevNotifications) => [...prevNotifications, data]);
     });
 
     return () => {
@@ -22,8 +22,8 @@ const NotificationList = () => {
     <div>
       <h3>Notifications</h3>
       <ul>
-        {notifications.map((userId, index) => (
-          <li key={index}>User {userId} sent a notification</li>
+        {notifications.map((notification) => (
+          <li key={notification.userId}>User {notification.userId} sent a notification</li>
         ))}
       </ul>
     </div>

@@ -7,7 +7,6 @@ const EditProfile = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [profilePicture, setProfilePicture] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
@@ -17,7 +16,6 @@ const EditProfile = () => {
         setFirstName(response.data.firstName);
         setLastName(response.data.lastName);
         setEmail(response.data.email);
-        setProfilePicture(response.data.picture);
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
@@ -50,7 +48,9 @@ const EditProfile = () => {
         },
       });
 
-      // Handle success, e.g., redirect to profile page or show a success message
+      if (response.status === 200) {
+        window.alert('Les données ont été mises à jour avec succès!');
+      }
     } catch (error) {
       console.error('Error updating profile:', error);
     }
