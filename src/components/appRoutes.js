@@ -17,6 +17,7 @@ import Payment from './Payment/stripePromise.js';
 import Footer from './footer.jsx';
 import Dashboard from './Dashboard/dashboard.jsx';
 import EditProfile from './User/editProfile.jsx';
+import Mentions from './mentions.jsx';
 
 
 const AppRoutes = () => {
@@ -42,6 +43,7 @@ const AppRoutes = () => {
             <Route path="/success" element={<PaymentSuccess />} /> 
             <Route path="/cancel" element={<PaymentCancel />} />  
             <Route path="/offers" element={<OfferFetcher><Payment /></OfferFetcher>} />
+            <Route path="/mentions" element={<Mentions />} />
             <Route path="*" element={<Navigate to="/login" />} />   
           </Routes>
           </main>

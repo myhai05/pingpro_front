@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -7,7 +8,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-4 mb-3">
-                        <h5>About Us</h5>
+                        <Link to="/mentions">Mentions légales</Link>
                         <p>Some information about the company.</p>
                     </div>
                     <div className="col-md-4 mb-3">
