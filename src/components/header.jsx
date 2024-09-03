@@ -5,7 +5,7 @@ import Logout from './Auth/logout';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Dashboard from './Dashboard/dashboard';
+
 
 const Header = () => {
   const { user } = useContext(AuthContext); // Utiliser le contexte pour obtenir l'utilisateur
