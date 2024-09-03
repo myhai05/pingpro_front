@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
+import Button from 'react-bootstrap/Button';
 
 
 const Logout = () => {
@@ -25,7 +26,7 @@ const Logout = () => {
 
   return (
     <div>
-      <button onClick={logout}>Quitter</button>
+      <Button variant="primary" onClick={logout}>Quitter</Button>
     </div>
   );
 };

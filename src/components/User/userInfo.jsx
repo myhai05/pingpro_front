@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
+import {fetchUserInfos} from './fetchUserInfos';
 
 const UserInfo = () => {
   const { user } = useContext(AuthContext);
@@ -10,26 +10,27 @@ const UserInfo = () => {
   const [profilePicture, setProfilePicture] = useState('');
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
+    const userInfo = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}api/${user.userId}`);
-        setCredits(response.data.credits);
-        setFirstName(response.data.firstName);
-        setProfilePicture(response.data.picture);
+        const response = await fetchUserInfos(user.userId);
+        console.log(response);
+        setCredits(response.credits);
+        setFirstName(response.firstName);
+        setProfilePicture(response.picture);
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
     };
 
     if (user) {
-      fetchUserInfo();
+      userInfo();
     }
   }, [user]);
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-5">
       <h3>Bonjour {firstName}</h3>
-      <h3>Your Credit Balance: {credits}</h3>
+      <h3>Vos crédits: {credits}</h3>
       {profilePicture && (
         <div className="profile-picture-container">
           <img 
@@ -42,7 +43,7 @@ const UserInfo = () => {
       )}
       <div className="mt-3">
         {/* Link to the edit profile form */}
-        <Link to="/edit-profile" className="btn btn-secondary">Edit Profile</Link>
+        <Link to="/edit-profile" className="btn btn-secondary">Mettre à jour</Link>
       </div>
     </div>
   );

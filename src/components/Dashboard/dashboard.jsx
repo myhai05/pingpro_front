@@ -1,58 +1,47 @@
 import React, { useState } from 'react';
-import UserList from './userList'; 
+import UsersList from './usersList'; 
 import OfferList from './offerList';
-import Display from './display';
-import './dashboard.css'; // Assurez-vous que le fichier CSS est à jour
-import DisplayNotifications from './notificationsDisplay';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row, Col } from 'react-bootstrap';
+import NotifiedUsers from './notifitedUsers';
+
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState('user');
+  const [activeTab, setActiveTab] = useState(<OfferList />);
 
   return (
-    <div className="dashboard">
-      <div className="sidebar">
+    <Container fluid className="d-flex flex-column min-vh-100">
+    <Row className="dashboard">
+      <Col  xs={2} className="sidebar">
       <ul>
         <li>
           <button
-            className={activeTab === 'user' ? 'active' : ''}
-            onClick={() => setActiveTab('user')}
-          >
-            User
-          </button>
-        </li>
-        <li>
-          <button
-            className={activeTab === 'notifications' ? 'active' : ''}
-            onClick={() => setActiveTab('notifications')}
-          >
-            Notifications
-          </button>
-        </li>
-        <li>
-          <button
-            className={activeTab === 'offers' ? 'active' : ''}
-            onClick={() => setActiveTab('offers')}
+            onClick={() => setActiveTab(<OfferList />)}
           >
             Offres
           </button>
         </li>
         <li>
           <button
-            className={activeTab === 'display' ? 'active' : ''}
-            onClick={() => setActiveTab('display')}
+            onClick={() => setActiveTab(<UsersList />)}
           >
-            Posts
+            Liste de utilisateurs
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => setActiveTab(<NotifiedUsers />)}
+          >
+            Notifications
           </button>
         </li>
       </ul>
-      </div>
-      <div className="content">
-        {activeTab === 'user' && <UserList />}
-        {activeTab === 'notifications' && <DisplayNotifications />}
-        {activeTab === 'offers' && <OfferList />}
-        {activeTab === 'display' && <Display />}
-      </div>
-    </div>
+      </Col>
+      <Col className="content">
+        {activeTab}
+      </Col>
+    </Row>
+    </Container>
   );
 };
 

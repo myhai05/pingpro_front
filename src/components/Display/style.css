@@ -1,0 +1,29 @@
+/* styles.css */
+.overlay-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Conteneur du texte avec transparence */
+  .overlay-text {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond transparente */
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: clamp(1rem, 2vw + 1rem, 2.5rem); /* Taille du texte responsive */
+    max-width: 90%; /* Assurez-vous que le texte ne dépasse pas du conteneur */
+    display: inline-block; /* Ajuste le conteneur du texte */
+  }
+  
+  /* Masquer le texte sur les petits écrans */
+  @media (max-width: 576px) {
+    .overlay-text {
+      display: none;
+    }
+  }
+  

@@ -5,8 +5,6 @@ import { AuthContext } from "../Context/authContext";
 import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 
-
-
 const stripePromise = loadStripe('pk_test_51PbH9pLLtIydrNlAxa7LnYkDXw0FudnSTRIEsdVpdktSONB1ktdwDpQCMQlmowzIGU9kePqWVlFxcMMOywrDJDLP00hOszgx7C'); // Remplacez par votre clé publique Stripe
 
 const Payment = ({ offers }) => {
@@ -29,6 +27,7 @@ const Payment = ({ offers }) => {
       const { data } = await axios.post(`${process.env.REACT_APP_API_URL}api/payment/create-checkout-session`, { amount: selectedOffer.price * 100,  offerId: selectedOffer._id, userId: user.userId });
        console.log(user);
       const stripe = await stripePromise;
+
       const { error } = await stripe.redirectToCheckout({
         sessionId: data.sessionId,
       });

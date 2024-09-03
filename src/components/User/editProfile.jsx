@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
+import {fetchUserInfos} from './fetchUserInfos';
 
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
@@ -12,10 +13,10 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}api/${user.userId}`);
-        setFirstName(response.data.firstName);
-        setLastName(response.data.lastName);
-        setEmail(response.data.email);
+        const response = await fetchUserInfos(user.userId);
+        setFirstName(response.firstName);
+        setLastName(response.lastName);
+        setEmail(response.email);
       } catch (error) {
         console.error('Error fetching user info:', error);
       }
@@ -57,11 +58,12 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Edit Profile</h2>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="col-md-4">
+      <h2>Mettre à jour les donnèes</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="form-group">
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">Prénom</label>
           <input
             type="text"
             id="firstName"
@@ -71,7 +73,7 @@ const EditProfile = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">Nom</label>
           <input
             type="text"
             id="lastName"
@@ -91,7 +93,7 @@ const EditProfile = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="profilePicture">Profile Picture</label>
+          <label htmlFor="profilePicture">Photo de profil</label>
           <input
             type="file"
             id="profilePicture"
@@ -99,8 +101,9 @@ const EditProfile = () => {
             onChange={handleFileChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary mt-3">Save Changes</button>
+        <button type="submit" className="btn btn-primary mt-3">Eregistrer</button>
       </form>
+      </div>
     </div>
   );
 };

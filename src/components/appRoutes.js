@@ -24,8 +24,9 @@ const AppRoutes = () => {
   
   return (
       <Router>
-        <div>
+      
           <Header />
+          <main className="flex-grow-1 overflow-auto">
           <Routes>
             <Route path="/" element={<OfferFetcher><Home /></OfferFetcher>} />
             <Route path="/login" element={<SignIn />} />
@@ -38,13 +39,14 @@ const AppRoutes = () => {
             <Route path='/offer-form' element={<AddOfferForm />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/upload-form' element={<VideoUploadForm />} />
-            <Route path="/success" element={<PaymentSuccess />} />  {/* Ajoutez cette ligne */}
-            <Route path="/cancel" element={<PaymentCancel />} />  {/* Ajoutez cette ligne */}
+            <Route path="/success" element={<PaymentSuccess />} /> 
+            <Route path="/cancel" element={<PaymentCancel />} />  
             <Route path="/offers" element={<OfferFetcher><Payment /></OfferFetcher>} />
-            <Route path="*" element={<Navigate to="/login" />} />  {/* Redirection des routes non définies */}  
+            <Route path="*" element={<Navigate to="/login" />} />   
           </Routes>
+          </main>
           <Footer />
-        </div>
+   
       </Router>
   );
 };

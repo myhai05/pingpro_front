@@ -38,7 +38,8 @@ const ResetPasswordForm = () => {
   };
 
   return (
-    <div>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="col-md-4">
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="newPassword">New Password:</label>
@@ -62,6 +63,7 @@ const ResetPasswordForm = () => {
         <button type="submit">Reset Password</button>
       </form>
       {message && <p>{message}</p>}
+      </div>
     </div>
   );
 };

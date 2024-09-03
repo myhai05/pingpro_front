@@ -1,9 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const SaveChapters = ({ postId, chapters }) => {
-    const handleSaveChapters = async () => {
+export const handleSaveChapters = async (postId, chapters) => {
+  
         try {
             const { status } = await axios.post(`${process.env.REACT_APP_API_URL}api/post/save-chapters`, { postId, chapters });
             if (status === 200) {
@@ -16,13 +14,3 @@ const SaveChapters = ({ postId, chapters }) => {
             alert('Failed to save chapters');
         }
     };
-
-    return <button onClick={handleSaveChapters}>Save Chapters</button>;
-};
-
-SaveChapters.propTypes = {
-    postId: PropTypes.string.isRequired,
-    chapters: PropTypes.array.isRequired,
-};
-
-export default SaveChapters;

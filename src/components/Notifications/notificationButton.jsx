@@ -1,54 +1,38 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
+import Button from 'react-bootstrap/Button';
+import { creditDeduct } from './creditDeduct';
+import { fetchUserInfos } from '../User/fetchUserInfos';
 
 
 const NotificationButton = () => {
     const { user } = useContext(AuthContext);
-    const userId = user ? user.userId : null;
-   
+    const userId = user.userId;
     const [credits, setCredits] = useState(0);
 
     useEffect(() => {
-
-        const fetchUserInfo = async () => {
+        const userInfo = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}api/${user.userId}`);
-                setCredits(response.data.credits);
-                console.log(credits);
+                const response = await fetchUserInfos(user.userId);
+                setCredits(response.credits);
             } catch (error) {
-                console.error('Error fetching credits:', error);
+                console.log(error);
             }
-        };
-
-        if (user) {
-            fetchUserInfo();
         }
+        userInfo();
     }, [user]);
 
     const sendNotification = async () => {
-        const confirmSend = window.confirm("Are you sure you want to send a notification? This will cost you 1 credit.");
+        const confirmSend = window.confirm("L'envoi d'une notification va vous couter 1 credit!");
 
         if (confirmSend && credits > 0) {
             try {
-                // Envoyer la notification
-                const response = await axios.post(`${process.env.REACT_APP_API_URL}api/post/send-notification`, {
+                await axios.post(`${process.env.REACT_APP_API_URL}api/post/send-notification`, {
                     userId,
                 });
-
-                console.log(response.data);
-
-                // Déduire un crédit après confirmation
-
-                const newCredits = credits - 1;
-                setCredits(newCredits);
-
-                // Mettre à jour le backend avec le nouveau solde
-                await axios.post(`${process.env.REACT_APP_API_URL}api/deduct-credit`, {
-                    userId: user.userId,
-                    credits: newCredits,
-                });
-
+                await creditDeduct(userId, credits);
+                setCredits(credits - 1);
             } catch (error) {
                 console.error('Error sending notification:', error);
             }
@@ -56,9 +40,9 @@ const NotificationButton = () => {
     };
 
     return (
-        <button onClick={sendNotification} disabled={!user || credits <= 0}>
-            Send Notification
-        </button>
+        <Button variant="primary" onClick={sendNotification} disabled={credits <= 0}>
+            Notifier
+        </Button>
     );
 };
 

@@ -1,41 +1,31 @@
-import React, { useState, useContext } from 'react';
-import PostsList from './Videos/postList';
-import VideoList from './Videos/videoPlayer';
+import React, { useContext } from 'react';
 import { AuthContext } from './Context/authContext';
 import UserInfo from './User/userInfo';
+import VideosList from './Dashboard/videosList';
 
 
 const Private = () => {
-  const [selectedPostId, setSelectedPostId] = useState(null);
+
   const { user } = useContext(AuthContext);
-     
-  const handleSelectPost = (postId) => {
-    setSelectedPostId(postId);
-  };
-  
-  const handleGoBack = () => {
-    setSelectedPostId(null); // Show the posts list again
-  };
 
-  return (
-    <div className="container-fluid">
-      <div className="row">
-        {/* UserInfo on 1/3 of the page */}
-        <div className="col-md-4">
-          <UserInfo /> {/* Render the UserInfo component */}
-        </div>
+  const userId = user ? user.userId : null;
 
-        {/* PostsList or VideoList on 2/3 of the page */}
-        <div className="col-md-8">
-          {!selectedPostId ? (
-            <PostsList onSelectPost={handleSelectPost} />
-          ) : (
-            <VideoList postId={selectedPostId} userId={user ? user.userId : null} onGoBack={handleGoBack} />
-          )}
+  if (userId) {
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-4">
+            <UserInfo />
+          </div>
+          <div className="col-md-8">
+            <VideosList userId={userId} />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (<div><p>Loading</p></div>);
+  }
 };
 
 export default Private;

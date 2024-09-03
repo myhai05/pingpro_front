@@ -36,7 +36,8 @@ const AddOfferForm = () => {
   };
 
   return (
-    <div className="form-container">
+  <div className="container d-flex justify-content-center align-items-center vh-100">
+    <div className="col-md-4">
       <h2>Ajouter une Nouvelle Offre</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -83,9 +84,10 @@ const AddOfferForm = () => {
           />
         </div>
         <div className="form-group">
-          <button type="submit">Ajouter l'Offre</button>
+          <button type="submit">Ajouter et publier l'Offre</button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

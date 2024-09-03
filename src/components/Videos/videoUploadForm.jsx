@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const VideoUploadForm = () => {
     const { user } = useContext(AuthContext); // Utilisation du contexte d'authentification pour récupérer userId
-    const userId = user ? user.userId : null; // Récupérez userId depuis user si disponible
+    const userId = user.userId; // Récupérez userId depuis user si disponible
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [video, setVideo] = useState(null);
@@ -26,10 +26,6 @@ const VideoUploadForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!userId) {
-            console.error('User ID is not defined');
-            return;
-        }
 
         const formData = new FormData();
         formData.append('title', title);
@@ -53,11 +49,12 @@ const VideoUploadForm = () => {
     };
 
     return (
-        <div>
-            <h2>Upload Video</h2>
+        <div className="container d-flex justify-content-center align-items-center vh-100">
+            <div className="col-md-4">
+            <h2>Transmettre une vidéo</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="title">Title:</label>
+                    <label htmlFor="title">Titre:</label>
                     <input id="title" type="text" value={title} onChange={handleTitleChange} required />
                 </div>
                 <div>
@@ -65,11 +62,12 @@ const VideoUploadForm = () => {
                     <textarea id="description" value={description} onChange={handleDescriptionChange} required />
                 </div>
                 <div>
-                    <label htmlFor="video">Video:</label>
+                    <label htmlFor="video">Vidéo:</label>
                     <input id="video" type="file" accept="video/*" onChange={handleVideoChange} required />
                 </div>
-                <button type="submit">Upload</button>
+                <button type="submit">Envoyer</button>
             </form>
+            </div>
         </div>
     );
 };

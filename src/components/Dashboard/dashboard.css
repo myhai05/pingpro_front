@@ -1,72 +1,71 @@
 .dashboard {
-    display: flex;
-    height: 100vh;
-  }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #f4f4f4;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar li {
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .sidebar li:hover {
-    background-color: #ddd;
-  }
-  
-  .sidebar .active {
-    background-color: #ddd;
-    font-weight: bold;
-  }
-  
-  .content {
-    flex: 1;
-    padding: 20px;
-  }
+  display: flex;
+  height: 100vh;
+}
 
-  .linkStyle {
-    display: 'inline-block';
-    padding: '10px 20px';
-    color: '#fff';
-  }
-  
+.sidebar {
+  width: 250px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
 
-  .user-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  
-  .user-card {
-    background-color: #f0f0f0;
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  
-  .user-card h3 {
-    margin: 0;
-    font-size: 18px;
-  }
-  
-  .user-card p {
-    margin: 4px 0 0;
-    font-size: 14px;
-    color: #555;
-  }
-  
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.sidebar li:hover {
+  background-color: #ddd;
+}
+
+.sidebar .active {
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+.linkStyle {
+  display: 'inline-block';
+  padding: '10px 20px';
+  color: '#fff';
+}
+
+
+.user-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.user-card {
+  background-color: #f0f0f0;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.user-card h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.user-card p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #555;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css'; // Assurez-vous d'importer votre fichier CSS
 
 function ImageContainer() {
   return (
@@ -10,25 +11,13 @@ function ImageContainer() {
         className="img-fluid rounded"
         style={{ width: '100%', height: 'auto' }}
       />
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          color: 'white',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          padding: '20px',
-          borderRadius: '10px',
-          fontSize: '24px',
-          fontWeight: 'bold',
-        }}
-      >
-        "Amenez votre jeu à un niveau supérieur!"
+      <div className="overlay-text-container position-absolute top-50 start-50 translate-middle">
+        <div className="overlay-text">
+          "Amenez votre jeu à un niveau supérieur!"
+        </div>
       </div>
     </div>
   );
 }
 
 export default ImageContainer;
-

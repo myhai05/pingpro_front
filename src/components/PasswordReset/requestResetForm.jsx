@@ -16,7 +16,8 @@ const RequestResetForm = () => {
   };
 
   return (
-    <div>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+      <div className="col-md-4">
       <h2>Request Password Reset</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email:</label>
@@ -24,6 +25,7 @@ const RequestResetForm = () => {
         <button type="submit">Reset Password</button>
       </form>
       {message && <p>{message}</p>}
+      </div>
     </div>
   );
 };

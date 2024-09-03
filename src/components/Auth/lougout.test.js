@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import Logout from '../Auth/logout';
+import Logout from './logout';
 import { AuthContext } from '../Context/authContext';
 
 
