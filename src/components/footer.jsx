@@ -9,7 +9,6 @@ const Footer = () => {
                 <div className="row">
                     <div className="col-md-4 mb-3">
                         <Link to="/mentions" style={{ color: 'white'}}>Mentions légales</Link>
-                        <p>Some information about the company.</p>
                     </div>
                     <div className="col-md-4 mb-3">
                         <h5>Contact</h5>
