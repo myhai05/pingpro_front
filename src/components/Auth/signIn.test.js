@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
 import { BrowserRouter as Router } from 'react-router-dom';
-import SignIn from '../Auth/signIn';
+import SignIn from './signIn';
 
 // Mock d'axios
 jest.mock('axios');
