@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import axios from 'axios';
-import { AuthContext, AuthProvider } from '../Context/authContext';
+import { AuthContext, AuthProvider } from './authContext';
 
 // Mock axios
 jest.mock('axios');

@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-4 mb-3">
-                        <Link to="/mentions" style={{ color: 'white', textDecoration: 'none' }}>Mentions légales</Link>
+                        <Link to="/mentions" style={{ color: 'white'}}>Mentions légales</Link>
                     </div>
                     <div className="col-md-4 mb-3">
                         <h5>Contact</h5>
