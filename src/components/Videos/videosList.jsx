@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import VideoList from '../Videos/videoPlayer';
+import VideoList from './videoPlayer';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import { AuthContext } from '../Context/authContext';
+import { handleDeleteVideo } from './deleteVideo';
 
 const VideosList = ({ userId, onBack }) => {
   const [posts, setPosts] = useState([]);
@@ -24,13 +25,10 @@ const VideosList = ({ userId, onBack }) => {
       }
     };
 
-
     if (user) {
       fetchPosts();
     }
   }, );
-
-  
 
   const onHandleClick = (selectedPostId) => {
     setShowVideo(false);
@@ -40,6 +38,15 @@ const VideosList = ({ userId, onBack }) => {
   const onHandleBack = () => {
     setShowVideo(true);
   }
+
+  const onDelete = async (postId) => {
+    try {
+      await handleDeleteVideo(postId); // Ensure this function is correctly handling the deletion
+      setPosts(posts.filter(post => post._id !== postId)); // Remove deleted post from UI
+    } catch (error) {
+      console.error('Error deleting video:', error);
+    }
+  };
 
   return (
     <div>
@@ -58,8 +65,11 @@ const VideosList = ({ userId, onBack }) => {
             >
               <h3>{post.title}</h3>
               <p>{post.description}</p>
-              <p>{post.traite}</p>
+              <p>{post.traite}</p> 
             </Button>
+            <Button 
+                    variant="danger"
+                    onClick={() => onDelete(post._id)}>Supprimer</Button>
             </div>
           ))
         ) : (

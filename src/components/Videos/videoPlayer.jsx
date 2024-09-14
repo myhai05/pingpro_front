@@ -24,9 +24,6 @@ const VideoList = ({ postId, onGoBack }) => {
         fetchVideo();
     }, [postId]);
 
-
-    
-
     return (
         <div className="text-center mt-5">
             <div className="row d-flex justify-content-end p-2">
@@ -36,15 +33,13 @@ const VideoList = ({ postId, onGoBack }) => {
                 <div>
                     <h2>{video.title}</h2>
                     <p>{video.description}</p>
-                    
+                    {user.role === "user" ? <NotificationButton /> : null}
                     <ChaptersGenerator
                         chapters={chapters}
                         setChapters={setChapters}
                         videoUrl={video.videoUrl}
                         postId={postId}
-                    />
-
-                    {user.role === "user" ? <NotificationButton /> : null}
+                    />                   
                 </div>
             ) : (
                 <p>N'hésitez plus!!!</p>

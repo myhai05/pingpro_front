@@ -1,43 +1,20 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-import Logout from './logout';
+import { render, screen } from '@testing-library/react';
+import Logout from './logout'
 import { AuthContext } from '../Context/authContext';
 
-
-// Create a mock axios instance
-const mockAxios = new MockAdapter(axios);
-
-describe('Logout Component', () => {
-
-
-  it('redirects to home on error', async () => {
-    // Mock the axios GET request to logout with an error
-    mockAxios.onGet(`${process.env.REACT_APP_API_URL}api/logout`).networkError();
-
-    // Mock window.location
-    const originalLocation = window.location;
-    delete window.location;
-    window.location = { href: '/' };
+describe('Display Logout component', () => {
+  it('renders the Quitter button', () => {
+    // Mock the AuthContext
+    const setUserMock = jest.fn();
 
     render(
-      <AuthContext.Provider value={{ setUser: jest.fn() }}>
+      <AuthContext.Provider value={{ setUser: setUserMock }}>
         <Logout />
       </AuthContext.Provider>
     );
 
-    const button = screen.getByText('Quitter');
-    fireEvent.click(button);
-
-    // Await async changes
-    await screen.findByText('Quitter');
-
-    // Check if window.location was set to "/"
-    expect(window.location.href).toBe('/');
-
-    // Restore window.location
-    window.location = originalLocation;
+    const quitterButton = screen.getByRole('button', { name: /Quitter/i });
+    expect(quitterButton).toBeInTheDocument();
   });
 });

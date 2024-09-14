@@ -3,10 +3,11 @@ import axios from 'axios';
 import './dashboard.css';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import DeleteOffer from './deleteOffer';
 
 const OfferList = () => {
   const [offers, setOffers] = useState([]);
+  const [refresh, setRefresh] = useState(false); 
 
   useEffect(() => {
     const fetchOffers = async () => {
@@ -19,7 +20,11 @@ const OfferList = () => {
     };
 
     fetchOffers();
-  }, []);
+  }, [refresh]);
+
+  const handleDelete = () => {
+     setRefresh(true);
+  };
 
   return (
     <div >
@@ -28,10 +33,11 @@ const OfferList = () => {
           <Card.Title>{offer.title}</Card.Title>
           <Card.Text>{offer.description}</Card.Text>
           <Card.Text>{offer.price}</Card.Text>
-          <Button variant="primary">Supprimer</Button>
+          <DeleteOffer offerId={offer._id} onDelete={()=>handleDelete(offer._id)}/>
         </Card>
       ))}
       <Link to="/offer-form" className="linkStyle">Nouvelle offre</Link>
+      
     </div>
   );
 };

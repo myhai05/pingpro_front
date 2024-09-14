@@ -1,13 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import ReactPlayer from "react-player";
 import { Button } from "react-bootstrap";
 import { handleSaveChapters } from "./saveChapters";
 import { handleMarkAsProcessed } from "./markAsProcessed";
+import { AuthContext } from "../Context/authContext";
 
 const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
 
     const playerRef = useRef(null);
     const [currentComment, setCurrentComment] = useState("");
+    const { user } = useContext(AuthContext);
+
 
     const handleAddChapter = () => {
         const currentTime = playerRef.current.getCurrentTime();
@@ -24,7 +27,7 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
     };
 
     const handleChapterClick = (time) => {
-        if (playerRef.current) playerRef.current.seekTo(time);
+        playerRef.current.seekTo(time);
     };
 
     const saveChapters = async () => {
@@ -43,18 +46,27 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
         }
     }
 
+    const handleDeleteChapter = (_id) => {
+        const updatedChapters = chapters.filter((chapter) => chapter._id !== _id);
+        setChapters(updatedChapters);
+    };
+
     return (
         <div>
             <ReactPlayer
                 url={`${process.env.REACT_APP_API_URL}${videoUrl.replace(/\\/g, '/')}`}
                 controls
-                width="80%"
+                width="100%"
                 height="80%"
                 ref={playerRef}
             />
-            <Button onClick={handleAddChapter} variant="warning" className="w-auto m-1">Ajouter un Chapitre</Button>
-            <Button onClick={saveChapters} variant="success" className="w-auto m-1">Enregistrer</Button>
+            { user.role === 'admin' && (
+                <>
+            <Button onClick={handleAddChapter} variant="warning" className="w-auto m-1">Ajouter un Chapitre</Button> 
+            <Button onClick={saveChapters} variant="success" className="w-auto m-1">Enregistrer</Button> 
             <Button onClick={markProcessed} variant="info" className="w-auto m-1">Marquer comme traité</Button>
+            </>
+           )}
             <div className="d-flex flex-wrap justify-content-end py-3">
                 {chapters.map((chapter) => (
                     <div key={chapter._id} className="py-3 w-25">
@@ -65,6 +77,17 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
                             >
                                 {chapter.time.toFixed(2)}
                             </Button>
+                            <span
+                                onClick={() => handleDeleteChapter(chapter._id)}
+                                style={{
+                                    cursor: 'pointer',
+                                    color: 'red',
+                                    fontSize: '20px',
+                                    marginLeft: '10px'
+                                }}
+                            >
+                                &times;
+                            </span>
                         </h5>
                         <input
                             type="text"

@@ -1,15 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react';
-import axios from 'axios';
 import { AuthContext } from '../Context/authContext';
 import Button from 'react-bootstrap/Button';
 import { creditDeduct } from './creditDeduct';
 import { fetchUserInfos } from '../User/fetchUserInfos';
+import { io } from 'socket.io-client';
+
 
 
 const NotificationButton = () => {
     const { user } = useContext(AuthContext);
     const userId = user.userId;
     const [credits, setCredits] = useState(0);
+    const [socket, setSocket] = useState(null);
+
+    useEffect(() => {
+        // Initialize socket connection
+        const socketInstance = io(process.env.REACT_APP_API_URL, { withCredentials: true });
+        setSocket(socketInstance);
+        // Clean up on component unmount
+        return () => { if (socketInstance) { socketInstance.disconnect(); }
+        };
+    }, []);
 
     useEffect(() => {
         const userInfo = async () => {
@@ -21,16 +32,14 @@ const NotificationButton = () => {
             }
         }
         userInfo();
-    }, [user]);
+    }, [user.userId]);
 
     const sendNotification = async () => {
-        const confirmSend = window.confirm("L'envoi d'une notification va vous couter 1 credit!");
+        const confirmSend = window.confirm("L'envoi d'une notification va vous coûter 1 crédit!");
 
-        if (confirmSend && credits > 0) {
+        if (confirmSend && credits > 0 && socket) {
             try {
-                await axios.post(`${process.env.REACT_APP_API_URL}api/post/send-notification`, {
-                    userId,
-                });
+                socket.emit('notification', { userId });
                 await creditDeduct(userId, credits);
                 setCredits(credits - 1);
             } catch (error) {
@@ -40,9 +49,9 @@ const NotificationButton = () => {
     };
 
     return (
-        <Button variant="primary" onClick={sendNotification} disabled={credits <= 0}>
-            Notifier
-        </Button>
+        <>  <Button className='w-auto m-2' variant="warning" onClick={sendNotification} disabled={credits <= 0}> Notifier </Button>
+            <p>Vos crédits: {credits}</p>
+        </>
     );
 };
 

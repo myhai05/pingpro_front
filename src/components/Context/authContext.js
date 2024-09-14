@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 // Création d'un contexte d'authentification
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);  // État pour stocker l'utilisateur
+const AuthProvider = ({ children, initialUser }) => {
+  const [user, setUser] = useState(initialUser);  // Initialiser avec initialUser
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -19,8 +19,11 @@ const AuthProvider = ({ children }) => {
         console.log("No token");  // Gestion des erreurs
       }
     };
-    fetchToken();  // Appel de la fonction de récupération du jeton
-  }, []);  // useEffect s'exécute une seule fois après le montage du composant
+
+    if (!user) {
+      fetchToken();  // Appel de la fonction de récupération du jeton uniquement si l'utilisateur n'est pas déjà défini
+    }
+  }, [user]);  // Dépendance sur `user`
 
   // Utilisation de useMemo pour mémoriser la valeur passée au fournisseur de contexte
   const contextValue = useMemo(() => ({ user, setUser }), [user]);
@@ -35,7 +38,7 @@ const AuthProvider = ({ children }) => {
 // Validation des props avec PropTypes
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  initialUser: PropTypes.object,  // Ajout de la validation pour initialUser
 };
 
 export { AuthContext, AuthProvider };
-

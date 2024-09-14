@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from './Context/authContext';
 import UserInfo from './User/userInfo';
-import VideosList from './Dashboard/videosList';
+import VideosList from './Videos/videosList';
 
 
 const Private = () => {

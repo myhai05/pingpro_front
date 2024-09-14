@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import './dashboard.css';
-import VideosList from './videosList';
+import VideosList from '../Videos/videosList';
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);

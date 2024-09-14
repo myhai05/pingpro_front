@@ -5,7 +5,6 @@ import {fetchUserInfos} from './fetchUserInfos';
 
 const UserInfo = () => {
   const { user } = useContext(AuthContext);
-  const [credits, setCredits] = useState(0);
   const [firstName, setFirstName] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
 
@@ -13,8 +12,6 @@ const UserInfo = () => {
     const userInfo = async () => {
       try {
         const response = await fetchUserInfos(user.userId);
-        console.log(response);
-        setCredits(response.credits);
         setFirstName(response.firstName);
         setProfilePicture(response.picture);
       } catch (error) {
@@ -30,7 +27,6 @@ const UserInfo = () => {
   return (
     <div className="text-center mt-5">
       <h3>Bonjour {firstName}</h3>
-      <h3>Vos crédits: {credits}</h3>
       {profilePicture && (
         <div className="profile-picture-container">
           <img 
