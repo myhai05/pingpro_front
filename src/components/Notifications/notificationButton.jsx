@@ -15,7 +15,7 @@ const NotificationButton = () => {
 
     useEffect(() => {
         // Initialize socket connection
-        const socketInstance = io(process.env.REACT_APP_API_URL, { withCredentials: true });
+        const socketInstance = io(process.env.REACT_APP_API_URL, { withCredentials: false });
         setSocket(socketInstance);
         // Clean up on component unmount
         return () => { if (socketInstance) { socketInstance.disconnect(); }

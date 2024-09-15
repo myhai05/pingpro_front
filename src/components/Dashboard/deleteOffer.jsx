@@ -4,8 +4,7 @@ import axios from 'axios';
 
 
 const DeleteOffer = ({ offerId, onDelete }) => {
-
-
+  
     const deleteOffer = async () => {
       try {
         const response = await axios.delete(`${process.env.REACT_APP_API_URL}api/offers/delete-offer/${offerId}`);
@@ -14,9 +13,6 @@ const DeleteOffer = ({ offerId, onDelete }) => {
         console.log('Erreure pendant la suppression: ',error);
       };
     };
-
-
-  
 
   return (
     <Button onClick={deleteOffer} className='w-auto'>Supprimer</Button>

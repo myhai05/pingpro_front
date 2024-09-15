@@ -4,6 +4,7 @@ export const handleDeleteVideo = async (postId) => {
     
      try{
         const { status } = await axios.delete(`${process.env.REACT_APP_API_URL}api/post/${postId}`);
+        console.log(status);
         if(status===200){
             alert('La vidéo à été supprimée!');
             return true;

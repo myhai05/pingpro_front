@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState(<OfferList />);
 
   return (
-    <Container fluid className="d-flex flex-column min-vh-100">
+    <Container fluid className="d-flex flex-column vh-80">
       <Row className="flex-grow-1">
         <Col xs={12} md={3} className="sidebar">
           <ul>

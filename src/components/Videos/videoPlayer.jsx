@@ -31,7 +31,7 @@ const VideoList = ({ postId, onGoBack }) => {
             </div>
             {video ? (
                 <div>
-                    <h2>{video.title}</h2>
+                    <p>{video.title}</p>
                     <p>{video.description}</p>
                     {user.role === "user" ? <NotificationButton /> : null}
                     <ChaptersGenerator

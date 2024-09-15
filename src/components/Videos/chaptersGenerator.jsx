@@ -56,8 +56,8 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
             <ReactPlayer
                 url={`${process.env.REACT_APP_API_URL}${videoUrl.replace(/\\/g, '/')}`}
                 controls
-                width="100%"
-                height="80%"
+                //width="80%"
+                height="70%"
                 ref={playerRef}
             />
             { user.role === 'admin' && (
@@ -69,7 +69,7 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
            )}
             <div className="d-flex flex-wrap justify-content-end py-3">
                 {chapters.map((chapter) => (
-                    <div key={chapter._id} className="py-3 w-25">
+                    <div key={chapter._id} className="py-3 w-5">
                         <h5>
                             <Button
                                 className="btn btn-secondary btn-sm me-2"
