@@ -10,7 +10,7 @@ const NotifitedUsers = () => {
   const [userId, setUserId] = useState(null);
 
 useEffect(() => {
-  const socketInstance = io(process.env.REACT_APP_API_URL, { withCredentials: false });
+  const socketInstance = io(process.env.REACT_APP_API_URL, { withCredentials: true });
 
   socketInstance.on('notifications', (data) => {
     setUsers(data);
