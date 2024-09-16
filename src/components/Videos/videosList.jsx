@@ -28,7 +28,7 @@ const VideosList = ({ userId, onBack }) => {
     if (user) {
       fetchPosts();
     }
-  }, []);
+  }, [userId, user]);
 
   const onHandleClick = (selectedPostId) => {
     setShowVideo(false);
