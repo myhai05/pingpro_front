@@ -51,22 +51,22 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
         setChapters(updatedChapters);
     };
     return (
-        <div>
+        <div className="justify-content-center">
             <ReactPlayer
                 url={`${process.env.REACT_APP_API_URL}${videoUrl.replace(/\\/g, '/')}`}
                 controls
-                //width="80%"
+                width="80%"
                 height="70%"
                 ref={playerRef}
             />
             { user.role === 'admin' && (
-                <>
+                <div>
             <Button onClick={handleAddChapter} variant="warning" className="w-auto m-1">Ajouter un Chapitre</Button> 
             <Button onClick={saveChapters} variant="success" className="w-auto m-1">Enregistrer</Button> 
             <Button onClick={markProcessed} variant="info" className="w-auto m-1">Marquer comme traité</Button>
-            </>
+            </div>
            )}
-            <div className="d-flex flex-wrap justify-content-end py-3">
+            <div className="d-flex flex-wrap py-3">
                 {chapters.map((chapter) => (
                     <div key={chapter._id} className="py-3 w-5">
                         <h5>
