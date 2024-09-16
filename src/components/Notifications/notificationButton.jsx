@@ -13,7 +13,7 @@ const NotificationButton = () => {
 
     useEffect(() => {
         // Initialize socket connection
-        const socketInstance = io(process.env.REACT_APP_API_URL, { withCredentials: true });
+        const socketInstance = io(process.env.REACT_APP_API_URL, { withCredentials: true, transports: ['websocket'] });
         setSocket(socketInstance);
         // Clean up on component unmount
         return () => { if (socketInstance) { socketInstance.disconnect(); }
@@ -28,7 +28,7 @@ const NotificationButton = () => {
             }
         }
         userInfo();
-    }, [user.userId]);
+    }, [user]);
 
     const sendNotification = async () => {
         const confirmSend = window.confirm("L'envoi d'une notification va vous coûter 1 crédit!");
