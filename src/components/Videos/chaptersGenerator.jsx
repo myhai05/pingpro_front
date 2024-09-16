@@ -50,7 +50,6 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
         const updatedChapters = chapters.filter((chapter) => chapter._id !== _id);
         setChapters(updatedChapters);
     };
-
     return (
         <div>
             <ReactPlayer
@@ -77,17 +76,9 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
                             >
                                 {chapter.time.toFixed(2)}
                             </Button>
-                            <span
-                                onClick={() => handleDeleteChapter(chapter._id)}
-                                style={{
-                                    cursor: 'pointer',
-                                    color: 'red',
-                                    fontSize: '20px',
-                                    marginLeft: '10px'
-                                }}
-                            >
-                                &times;
-                            </span>
+                            <span   onClick={() => handleDeleteChapter(chapter._id)}
+                                    style={{ cursor: 'pointer', color: 'red', fontSize: '20px', marginLeft: '10px' }}
+                            > &times;</span>
                         </h5>
                         <input
                             type="text"

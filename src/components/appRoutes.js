@@ -25,7 +25,7 @@ const AppRoutes = () => {
       <Router>
       
           <Header />
-          <main className="flex-grow-1 overflow-auto">
+          <main className="flex-grow-1 overflow-auto" style={{ minHeight: '500px' }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<SignIn />} />

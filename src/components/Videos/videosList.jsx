@@ -28,7 +28,7 @@ const VideosList = ({ userId, onBack }) => {
     if (user) {
       fetchPosts();
     }
-  }, );
+  }, []);
 
   const onHandleClick = (selectedPostId) => {
     setShowVideo(false);
@@ -38,7 +38,6 @@ const VideosList = ({ userId, onBack }) => {
   const onHandleBack = () => {
     setShowVideo(true);
   }
-
   const onDelete = async (postId) => {
     try {
       await handleDeleteVideo(postId); // Ensure this function is correctly handling the deletion

@@ -5,8 +5,6 @@ import { creditDeduct } from './creditDeduct';
 import { fetchUserInfos } from '../User/fetchUserInfos';
 import { io } from 'socket.io-client';
 
-
-
 const NotificationButton = () => {
     const { user } = useContext(AuthContext);
     const userId = user.userId;
@@ -24,11 +22,9 @@ const NotificationButton = () => {
 
     useEffect(() => {
         const userInfo = async () => {
-            try {
-                const response = await fetchUserInfos(user.userId);
+            try { const response = await fetchUserInfos(user.userId);
                 setCredits(response.credits);
-            } catch (error) {
-                console.log(error);
+            } catch (error) { console.log(error);
             }
         }
         userInfo();
@@ -36,7 +32,6 @@ const NotificationButton = () => {
 
     const sendNotification = async () => {
         const confirmSend = window.confirm("L'envoi d'une notification va vous coûter 1 crédit!");
-
         if (confirmSend && credits > 0 && socket) {
             try {
                 socket.emit('notification', { userId });
