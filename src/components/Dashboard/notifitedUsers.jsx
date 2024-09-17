@@ -48,9 +48,5 @@ useEffect(() => {
       </div>
     );
   };
-    NotifitedUsers.propTypes = {
-      onSelectUser: PropTypes.func.isRequired,  // onSelectUser doit être une fonction et est requis
-    };
-
-
-    export default NotifitedUsers;
+    
+  export default NotifitedUsers;

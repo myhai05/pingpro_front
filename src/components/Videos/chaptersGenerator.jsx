@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { handleSaveChapters } from "./saveChapters";
 import { handleMarkAsProcessed } from "./markAsProcessed";
 import { AuthContext } from "../Context/authContext";
+import PropTypes from 'prop-types';
 
 const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
 
@@ -76,7 +77,9 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
                             >
                                 {chapter.time.toFixed(2)}
                             </Button>
-                            <span   onClick={() => handleDeleteChapter(chapter._id)}
+                            <span  role="button" tabIndex="0" onClick={() => handleDeleteChapter(chapter._id)}
+                            onKeyDown={(e) => {if (e.key === 'Enter' || e.key === ' ') {  handleDeleteChapter(chapter._id); }
+                            }}
                                     style={{ cursor: 'pointer', color: 'red', fontSize: '20px', marginLeft: '10px' }}
                             > &times;</span>
                         </h5>
@@ -92,6 +95,18 @@ const ChaptersGenerator = ({ postId, chapters, setChapters, videoUrl }) => {
             </div>
         </div>
     );
-}
+};
+
+// Define prop types for validation
+ChaptersGenerator.propTypes = {
+    postId: PropTypes.string.isRequired,
+    chapters: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        comment: PropTypes.string.isRequired,
+        time: PropTypes.number.isRequired
+    })).isRequired,
+    setChapters: PropTypes.func.isRequired,
+    videoUrl: PropTypes.string.isRequired
+};
 
 export default ChaptersGenerator;

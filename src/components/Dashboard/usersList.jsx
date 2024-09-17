@@ -53,8 +53,5 @@ const UsersList = () => {
   );
 };
 
-UsersList.propTypes = {
-  onSelectUser: PropTypes.func, // Définir onSelectUser comme optionnel
-};
 
 export default UsersList;

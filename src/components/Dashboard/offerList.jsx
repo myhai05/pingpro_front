@@ -33,7 +33,7 @@ const OfferList = () => {
           <Card.Title>{offer.title}</Card.Title>
           <Card.Text>{offer.description}</Card.Text>
           <Card.Text>{offer.price}</Card.Text>
-          <DeleteOffer offerId={offer._id} onDelete={()=>handleDelete(offer._id)}/>
+          <DeleteOffer offerId={offer._id} onDelete={handleDelete}/>
         </Card>
       ))}
       <Link to="/offer-form" className="linkStyle">Nouvelle offre</Link>

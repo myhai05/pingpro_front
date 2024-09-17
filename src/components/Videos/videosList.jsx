@@ -58,7 +58,6 @@ const VideosList = ({ userId, onBack }) => {
           posts.map((post) => (
             <div className='py-2'>
             <Button
-              key={post._id}
               variant="primary"
               onClick={() => onHandleClick(post._id)}
             >
@@ -84,7 +83,7 @@ const VideosList = ({ userId, onBack }) => {
 // Validate props with PropTypes
 VideosList.propTypes = {
   userId: PropTypes.string.isRequired,
-  onSelectPost: PropTypes.func, // On peut marquer onSelectPost comme optionnel ici
+  onBack: PropTypes.func, // Added PropTypes validation for `onBack`
 };
 
 export default VideosList;

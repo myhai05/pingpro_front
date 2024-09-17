@@ -27,7 +27,7 @@ const Mentions = () => {
                 <p><strong>Délégué à la protection des données</strong> : Dimitriu Mihail– mmishk0501@gmail.com</p>
                 </p>
 
-                <div ng-bind-html="linkHTML"><p>Les mentions légales sont issues du modèle proposé par le  <a href="https://fr.orson.io/1371/generateur-mentions-legales" title="générateur gratuit de mentions légales pour un site internet">générateur gratuit de mentions légales pour un site internet</a></p></div>
+                <div><p>Les mentions légales sont issues du modèle proposé par le  <a href="https://fr.orson.io/1371/generateur-mentions-legales" title="générateur gratuit de mentions légales pour un site internet">générateur gratuit de mentions légales pour un site internet</a></p></div>
 
 
 
@@ -43,8 +43,7 @@ const Mentions = () => {
 
                 <h2>3. Description des services fournis.</h2>
 
-                <p>Le site internet <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> a pour objet de fournir une information concernant l’ensemble des activités de la société.
-                <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> s’efforce de fournir sur le site <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> des informations aussi précises que possible. Toutefois, il ne pourra être tenu responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.</p>
+                <p>Le site internet <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> a pour objet de fournir une information concernant l’ensemble des activités de la société.<a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> s’efforce de fournir sur le site <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> des informations aussi précises que possible. Toutefois, il ne pourra être tenu responsable des oublis, des inexactitudes et des carences dans la mise à jour, qu’elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.</p>
 
                 <p>Toutes les informations indiquées sur le site <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> sont données à titre indicatif, et sont susceptibles d’évoluer. Par ailleurs, les renseignements figurant sur le site <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> ne sont pas exhaustifs. Ils sont donnés sous réserve de modifications ayant été apportées depuis leur mise en ligne.</p>
 
@@ -150,7 +149,6 @@ const Mentions = () => {
                 <p>
                 Dans la limite de leurs attributions respectives et pour les finalités rappelées ci-dessus, les principales personnes susceptibles d’avoir accès aux données des Utilisateurs de <a href="https://cours.pingpro.fr">https://cours.pingpro.fr</a> sont principalement les agents de notre service client.</p>
                 
-                <div ng-bind-html="rgpdHTML"></div>
 
 
                 <h2>8. Notification d’incident</h2>
