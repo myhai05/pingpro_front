@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { AuthContext } from '../Context/authContext';
 import ChaptersGenerator from './chaptersGenerator';
 
-const VideoList = ({ postId, onGoBack }) => {
+const VideoPlayer = ({ postId, onGoBack }) => {
     const [video, setVideo] = useState(null);
     const [chapters, setChapters] = useState([]);
     const { user } = useContext(AuthContext);
@@ -48,9 +48,9 @@ const VideoList = ({ postId, onGoBack }) => {
     );
 };
 
-VideoList.propTypes = {
+VideoPlayer.propTypes = {
     postId: PropTypes.string.isRequired,
     onGoBack: PropTypes.func.isRequired,
 };
 
-export default VideoList;
+export default VideoPlayer;

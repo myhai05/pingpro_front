@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import VideoList from './videoPlayer';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import { AuthContext } from '../Context/authContext';
 import { handleDeleteVideo } from './deleteVideo';
+import VideoPlayer from './videoPlayer';
 
 const VideosList = ({ userId, onBack }) => {
   const [posts, setPosts] = useState([]);
@@ -73,7 +73,7 @@ const VideosList = ({ userId, onBack }) => {
           ))
         ) : (
           <div>
-            <VideoList postId={postId} onGoBack={onHandleBack} />
+            <VideoPlayer postId={postId} onGoBack={onHandleBack} />
           </div>
         )}
       </div>

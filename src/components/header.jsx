@@ -11,7 +11,7 @@ const Header = () => {
   const { user } = useContext(AuthContext); // Utiliser le contexte pour obtenir l'utilisateur
 
   return (
-    <Navbar expand="sm" style={{ backgroundColor: '#B227C2' }}>
+    <Navbar expand="lg" style={{ backgroundColor: '#B227C2' }}>
       <Container className="d-flex align-items-center rounded-2 p-3 " style={{ backgroundColor: '#86398F', height: '80%' }}>
         <Navbar.Brand as={Link} to={"/"} style={{ fontSize: '24px', fontWeight: 'bold', color: 'white' }}>
           PingPro

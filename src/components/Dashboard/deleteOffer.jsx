@@ -7,7 +7,7 @@ const DeleteOffer = ({ offerId, onDelete }) => {
   
     const deleteOffer = async () => {
       try {
-        const response = await axios.delete(`${process.env.REACT_APP_API_URL}api/offers/delete-offer/${offerId}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL}api/offers/delete-offer/${offerId}`);
         onDelete();
       } catch (error) {
         console.log('Erreure pendant la suppression: ',error);

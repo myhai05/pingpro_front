@@ -20,9 +20,6 @@ useEffect(() => {
 };
 }, []);
 
- console.log(users);
- users.map((user)=>{console.log(user.data.userId)});
-
     const onSelectUser = (userId) => {
       setUserId(userId);
       setShowNotifiedUsers(false);
