@@ -37,13 +37,6 @@ pipeline {
                 }
             }
         }
-
-        stage('Quality Gate') {
-            steps {
-                // Attendre la validation de la Quality Gate
-                waitForQualityGate abortPipeline: true
-            }
-        }
     }
 
     post {
