@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import VideosList from '../Videos/videosList';
 import io from 'socket.io-client';
 
